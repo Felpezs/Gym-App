@@ -25,20 +25,41 @@ class MyDrawer extends StatelessWidget{
         ),
         ListTile(
           leading: const Icon(Icons.ice_skating),
-          title: const Text('Tela 1'),
+          title: const Text('Treinos'),
           onTap: () {
-            // Update the state of the app
-            // ...
-            // Then close the drawer
             Navigator.popUntil(context, ModalRoute.withName('/treinos'));
           },
         ),
         ListTile(
           leading: const Icon(Icons.ice_skating),
-          title: const Text('Tela 2'),
+          title: const Text('Exercicios Registrados'),
           onTap: () {
             Navigator.pop(context);
             Navigator.pushNamed(context, "/treinos/exercicios_registrados");
+          },
+        ),
+        ListTile(
+          leading: const Icon(Icons.ice_skating),
+          title: const Text('Historico'),
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.pushNamed(context, "/treinos/historico");
+          },
+        ),
+        ListTile(
+          leading: const Icon(Icons.ice_skating),
+          title: const Text('Editar Perfil'),
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.pushNamed(context, "/treinos/perfil");
+          },
+        ),
+        ListTile(
+          leading: const Icon(Icons.ice_skating),
+          title: const Text('Sobre'),
+          onTap: () {
+            Navigator.pop(context);
+            Navigator.pushNamed(context, "/treinos/sobre");
           },
         ),
       ],

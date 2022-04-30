@@ -34,6 +34,8 @@ class MyApp extends StatelessWidget {
         //"/treinos/exercicios_treino/adicionar_exercicio":(context)=> const ScreenAdicionarExercicio(),
         //"/treinos/historico":(context) => const ScreenHistorico(),
         //"/treinos/historico/historico_treino":(context) => const ScreenHistoricoTreino(),
+        //"/treinos/perfil":(context) => const ScreenPerfil(),
+        //"/treinos/sobre":(context) => const ScreenSobre()
       }
     );
   }
