@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'view/screenCadastro.dart';
+import 'view/telas_iniciais/screenCadastro.dart';
+import 'view/telas_iniciais/screenUserInfo.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,18 +16,40 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      home: const ScreenLogin(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class ScreenLogin extends StatelessWidget{
+  const ScreenLogin({Key? key}) : super(key: key);
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  Widget build(BuildContext context){
+    return Scaffold(
+      body: Align(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              'assets/images/GymAppIcon.png',
+              height: 100,
+              width: 100,
+            ),
+            const Text(
+              "GymApp",
+              style: TextStyle(
+                fontSize: 17,
+              )
+            ),
+          ]
+        ),
+      ),
+    );
+  }
 }
 
+/*
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
@@ -36,16 +59,16 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-              child: const Text('Open route'),
+              child: const Text('Entrar'),
               onPressed: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const SecondRoute()));
+                        builder: (context) => const ScreenUserInfo()));
               },
             ),
             ElevatedButton(
-              child: const Text('Cadastro'),
+              child: const Text('Cadastrar'),
               onPressed: () {
                 Navigator.push(
                     context,
@@ -59,7 +82,8 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-
+*/
+/*
 class SecondRoute extends StatelessWidget {
   const SecondRoute({Key? key}) : super(key: key);
 
@@ -77,3 +101,4 @@ class SecondRoute extends StatelessWidget {
     );
   }
 }
+*/
