@@ -1,5 +1,5 @@
+import 'package:fabrica_de_monstro/view/screenListaExercicios.dart';
 import 'package:flutter/material.dart';
-import 'view/screenCadastro.dart';
 
 void main() {
   runApp(const MyApp());
@@ -45,12 +45,12 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             ElevatedButton(
-              child: const Text('Cadastro'),
+              child: const Text('Exercícios'),
               onPressed: () {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const ScreenCadastro()));
+                        builder: (context) => const screenListaExercicios()));
               },
             )
           ],

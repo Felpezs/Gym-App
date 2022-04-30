@@ -1,4 +1,4 @@
-name: prog_mobile
+name: fabrica_de_monstro
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -64,6 +64,10 @@ flutter:
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
+
+  assets:
+    - assets/iconesExercicios/
+  #    - assets/iconesExercicios/braco.png
 
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
