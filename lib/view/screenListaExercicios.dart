@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../controller/listaExercicios.dart';
 
-class screenListaExercicios extends StatelessWidget {
-  const screenListaExercicios({Key? key}) : super(key: key);
+class ScreenListaExercicios extends StatelessWidget {
+  const ScreenListaExercicios({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

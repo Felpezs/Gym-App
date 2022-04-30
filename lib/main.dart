@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:prog_mobile/view/screenListaExercicios.dart';
 import 'view/telas_iniciais/screenCadastro.dart';
 import 'view/telas_iniciais/screenUserInfo.dart';
 import 'controller/inputData.dart';
 import 'widgets/buttonWidget.dart';
 void main() {
   runApp(const MyApp());
-  ScreenLogin();
 }
 
 class MyApp extends StatelessWidget {
@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
         "/":(context)=> const ScreenLogin(),
         "/cadastro":(context)=> const ScreenCadastro(),
         "/userInfo":(context)=> const ScreenUserInfo(),
+        "/listaEx":(context)=> const ScreenListaExercicios(),
     }
     );
   }
