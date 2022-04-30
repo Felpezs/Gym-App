@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'view/telas_iniciais/screenCadastro.dart';
 import 'view/telas_iniciais/screenUserInfo.dart';
-
+import 'controller/inputData.dart';
+import 'widgets/buttonWidget.dart';
 void main() {
   runApp(const MyApp());
+  ScreenLogin();
 }
 
 class MyApp extends StatelessWidget {
@@ -16,7 +18,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const ScreenLogin(),
+      initialRoute: '/',
+      routes: {
+        "/":(context)=> const ScreenLogin(),
+        "/cadastro":(context)=> const ScreenCadastro(),
+        "/userInfo":(context)=> const ScreenUserInfo(),
+    }
     );
   }
 }
@@ -28,21 +35,41 @@ class ScreenLogin extends StatelessWidget{
   Widget build(BuildContext context){
     return Scaffold(
       body: Align(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              'assets/images/GymAppIcon.png',
-              height: 100,
-              width: 100,
-            ),
-            const Text(
-              "GymApp",
-              style: TextStyle(
-                fontSize: 17,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Image.asset(
+                'assets/images/GymAppIcon.png',
+                height: 155,
+                width: 155,
+              ),
+              const Text(
+                "Gym App",
+                style: TextStyle(
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold
+                )
+              ),
+              InputData().loginInput("Seu nome de Usuário", "Nome de Usuário", false),
+              InputData().loginInput("Senha", "Senha", true),
+              Padding(
+                padding: const EdgeInsets.only(top: 30),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ButtonWidget(buttonText: 'CADASTRAR', width: 150, onpressed: () {
+                      Navigator.pushNamed(
+                        context, "/cadastro");
+                    }),
+                    ButtonWidget(buttonText: 'ENTRAR', width: 150, onpressed: () {
+                      Navigator.pushReplacementNamed(context, "/userInfo");
+                    })
+                  ],
+                ),
               )
-            ),
-          ]
+              
+            ]
+          ),
         ),
       ),
     );
