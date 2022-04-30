@@ -24,7 +24,7 @@ class ScreenUserInfo extends StatelessWidget{
             buttonText: "Continuar", 
             width: 100, 
             onpressed: (){
-              Navigator.pushReplacementNamed(context, "/listaEx");
+              Navigator.pushReplacementNamed(context, "/treinos");
           })
           ]
         ),

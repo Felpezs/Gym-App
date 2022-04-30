@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class screenAdicionarExercicio extends StatelessWidget {
-  const screenAdicionarExercicio({Key? key}) : super(key: key);
+class ScreenCriarExercicio extends StatelessWidget {
+  const ScreenCriarExercicio({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:prog_mobile/view/screenAdicionarExercicio.dart';
-
-import '../controller/listaExercicios.dart';
+import 'package:prog_mobile/widgets/appBarWidget.dart';
+import 'package:prog_mobile/widgets/drawerWidget.dart';
+import '../tela_exercicios/screenAdicionarExercicio.dart';
+import '../../controller/listaExercicios.dart';
 
 class ScreenListaExercicios extends StatelessWidget {
   const ScreenListaExercicios({Key? key}) : super(key: key);
@@ -9,12 +10,14 @@ class ScreenListaExercicios extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: MyAppBar(context),
+      drawer: const MyDrawer(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => const screenAdicionarExercicio()),
+                builder: (context) => const ScreenCriarExercicio()),
           );
           // Add your onPressed code here!
         },
