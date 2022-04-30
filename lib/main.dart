@@ -5,6 +5,7 @@ import 'view/telas_iniciais/screenCadastro.dart';
 import 'view/telas_iniciais/screenUserInfo.dart';
 import 'view/telas_iniciais/screenLogin.dart';
 import 'view/tela_exercicios/screenTreinos.dart';
+import 'view/tela_exercicios/screenExerciciosTreino.dart';
 import 'controller/inputData.dart';
 import 'widgets/buttonWidget.dart';
 void main() {
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/',
+      initialRoute: '/treinos',
       routes: {
         "/":(context)=> const ScreenLogin(),
         "/cadastro":(context)=> const ScreenCadastro(),
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         "/treinos":(context)=> const ScreenTreinos(),
         "/treinos/exercicios_registrados":(context)=> const ScreenListaExercicios(),
         "/treinos/exercicios_registrados/criar_exercicio":(context)=> const ScreenCriarExercicio(),
-        //"/treinos/exercicios_treino":(context)=> const ScreenExerciciosTreino(),
+        "/treinos/exercicios_treino":(context)=> const ScreenExerciciosTreino(),
         //"/treinos/exercicios_treino/executar_treino":(context)=> const ScreenExecutarTreino(),
         //"/treinos/exercicios_treino/adicionar_exercicio":(context)=> const ScreenAdicionarExercicio(),
         //"/treinos/historico":(context) => const ScreenHistorico(),
