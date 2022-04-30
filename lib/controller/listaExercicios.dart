@@ -9,7 +9,7 @@ class ExercicioIsolado {
 
 Widget iconeExercicio(BuildContext context, ExercicioIsolado exercicioIsolado) {
   return Tab(
-    icon: new Image.asset(
+    icon: Image.asset(
       imagemCategoria(exercicioIsolado),
       width: 30,
       height: 30,
@@ -20,16 +20,16 @@ Widget iconeExercicio(BuildContext context, ExercicioIsolado exercicioIsolado) {
 //Recebe um obj ExercicioIsolado e define qual ícone de imagem será apresentado na tela
 imagemCategoria(ExercicioIsolado exercicioIsolado) {
   if (exercicioIsolado.categoriaExercicio == "Perna") {
-    return "assets/iconesExercicios/perna.png";
+    return "assets/images/perna.png";
   } else if (exercicioIsolado.categoriaExercicio == "Braço") {
-    return "assets/iconesExercicios/braco.png";
+    return "assets/images/braco.png";
   } else if (exercicioIsolado.categoriaExercicio == "Peito") {
-    return "assets/iconesExercicios/peito.png";
+    return "assets/images/peito.png";
   } else if (exercicioIsolado.categoriaExercicio == "Costas") {
-    return "assets/iconesExercicios/costas.png";
+    return "assets/images/costas.png";
   } else if (exercicioIsolado.categoriaExercicio == "Ombro") {
-    return "assets/iconesExercicios/ombro.png";
+    return "assets/images/ombro.png";
   } else {
-    return "assets/iconesExercicios/ronnieColleman.png";
+    return "assets/images/ronnieColleman.png";
   }
 }

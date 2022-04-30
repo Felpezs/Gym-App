@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prog_mobile/view/screenAdicionarExercicio.dart';
 
 import '../controller/listaExercicios.dart';
 
@@ -10,6 +11,11 @@ class ScreenListaExercicios extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const screenAdicionarExercicio()),
+          );
           // Add your onPressed code here!
         },
         backgroundColor: Colors.blue,
@@ -17,6 +23,17 @@ class ScreenListaExercicios extends StatelessWidget {
       ),
       body: Column(
         children: [
+          Container(
+            height: 20,
+          ),
+          Text("Exercícios Registrados",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              )),
+          Container(
+            height: 20,
+          ),
           itemExercicio(
             ExercicioIsolado('Abdutora', 'Perna'),
           ),
