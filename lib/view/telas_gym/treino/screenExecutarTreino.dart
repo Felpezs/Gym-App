@@ -111,6 +111,11 @@ class _ScreenExecutarTreinoState extends State<ScreenExecutarTreino>{
                   )
                 );
               });
+               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                backgroundColor: Colors.green,
+                duration: Duration(seconds: 2),
+                content: Text("Exercicio Adicionado"),
+                ));
             },
             child: Icon(Icons.add),
           ),
