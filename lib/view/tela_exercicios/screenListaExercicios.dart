@@ -69,7 +69,7 @@ class itemExercicio extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        leading: iconeExercicio(context, _exercicioIsolado),
+        leading: iconeExercicio(_exercicioIsolado),
         title: Text(_exercicioIsolado.nomeExercicio.toString()),
       ),
     );

@@ -7,7 +7,7 @@ class ExercicioIsolado {
   ExercicioIsolado(this.nomeExercicio, this.categoriaExercicio);
 }
 
-Widget iconeExercicio(BuildContext context, ExercicioIsolado exercicioIsolado) {
+Widget iconeExercicio(ExercicioIsolado exercicioIsolado) {
   return Tab(
     icon: Image.asset(
       imagemCategoria(exercicioIsolado),
