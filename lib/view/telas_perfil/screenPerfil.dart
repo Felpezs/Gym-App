@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 
+import '../../controller/inputData.dart';
 import '../../widgets/button.dart';
 
-class ScreenUserInfo extends StatefulWidget {
-  const ScreenUserInfo({Key? key}) : super(key: key);
+class ScreenPerfil extends StatefulWidget {
+  const ScreenPerfil({Key? key}) : super(key: key);
 
   @override
-  State<ScreenUserInfo> createState() => _ScreenUserInfoState();
+  State<ScreenPerfil> createState() => _ScreenPerfilState();
 }
 
-class _ScreenUserInfoState extends State<ScreenUserInfo> {
+class _ScreenPerfilState extends State<ScreenPerfil> {
   String? genero;
   double _currentSliderValueAltura = 20;
   double _currentSliderValuePeso = 20;
@@ -23,7 +24,7 @@ class _ScreenUserInfoState extends State<ScreenUserInfo> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              width: 300,
+              width: 500,
               child: Column(
                 children: [
                   SizedBox(
@@ -37,48 +38,25 @@ class _ScreenUserInfoState extends State<ScreenUserInfo> {
                     height: 20,
                   ),
                   Text(
-                    "Para te dar uma melhor experiência, precisamos das seguintes informações",
+                    "Atualize ou corrija alguma informação sua:",
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 16),
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: 10),
                 ],
               ),
             ),
             Container(
-              padding: EdgeInsets.all(0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 180,
-                    child: ListTile(
-                      title: Text("Masculino"),
-                      leading: Radio(
-                          value: "Masculino",
-                          groupValue: genero,
-                          onChanged: (value) {
-                            setState(() {
-                              genero = value.toString();
-                            });
-                          }),
-                    ),
-                  ),
-                  Container(
-                    width: 180,
-                    child: ListTile(
-                      title: Text("Feminino"),
-                      leading: Radio(
-                          value: "Feminino",
-                          groupValue: genero,
-                          onChanged: (value) {
-                            setState(() {
-                              genero = value.toString();
-                            });
-                          }),
-                    ),
-                  ),
-                ],
+              child: Align(
+                child: SingleChildScrollView(
+                  child: Column(children: [
+                    InputData().loginInput(
+                        "Seu nome de Usuário", "Nome de Usuário", false),
+                    InputData().loginInput("Senha", "Senha", true),
+                    InputData()
+                        .loginInput("Confirmar Senha", "Confirmar Senha", true),
+                  ]),
+                ),
               ),
             ),
             SizedBox(
@@ -117,10 +95,46 @@ class _ScreenUserInfoState extends State<ScreenUserInfo> {
               },
             ),
             Spacer(),
+            Container(
+              padding: EdgeInsets.all(0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 180,
+                    child: ListTile(
+                      title: Text("Masculino"),
+                      leading: Radio(
+                          value: "Masculino",
+                          groupValue: genero,
+                          onChanged: (value) {
+                            setState(() {
+                              genero = value.toString();
+                            });
+                          }),
+                    ),
+                  ),
+                  Container(
+                    width: 180,
+                    child: ListTile(
+                      title: Text("Feminino"),
+                      leading: Radio(
+                          value: "Feminino",
+                          groupValue: genero,
+                          onChanged: (value) {
+                            setState(() {
+                              genero = value.toString();
+                            });
+                          }),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             Align(
               alignment: Alignment.bottomRight,
               child: ButtonWidget(
-                  buttonText: "Continuar",
+                  buttonText: "Confirmar",
                   width: 100,
                   onpressed: () {
                     Navigator.pop(context);
