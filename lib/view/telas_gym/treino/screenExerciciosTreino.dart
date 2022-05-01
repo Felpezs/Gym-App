@@ -19,7 +19,7 @@ class _ScreenExerciciosTreinoState extends State<ScreenExerciciosTreino>{
   @override 
   Widget build(BuildContext context){
     return Scaffold(
-      appBar: MyAppBar(context),
+      appBar: MyAppBar(context, title: "Treino"),
       drawer: MyDrawer(),
       body: Stack(
         children: [

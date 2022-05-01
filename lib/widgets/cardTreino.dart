@@ -4,12 +4,13 @@ class CardWidget extends StatelessWidget{
   final String nomeTreino;
   final List<String> exercicioRep;
   final String route;
+  final List<String>? melhorSeries;
   
   CardWidget({
-    required this.nomeTreino,
-    required this.exercicioRep,
-    required this.route,
-  });
+    this.melhorSeries, 
+    required this.nomeTreino, 
+    required this.exercicioRep, 
+    required this.route});
 
   @override 
   Widget build(BuildContext context){
@@ -28,24 +29,50 @@ class CardWidget extends StatelessWidget{
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(20),
-                    child: Column(
+                    child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 10.0),
-                          child: Text(
-                            nomeTreino,
-                            style: const TextStyle(
-                              color: Color.fromRGBO(53, 53, 53, 100),
-                              fontSize: 18
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 10.0),
+                              child: Text(
+                                nomeTreino,
+                                style: const TextStyle(
+                                  color: Color.fromRGBO(53, 53, 53, 100),
+                                  fontSize: 18
+                                ),
+                              ),
                             ),
-                          ),
+                            for (String exercicio in exercicioRep) 
+                            Text(
+                              exercicio,
+                              style: const TextStyle(fontSize: 14),
+                            ),
+                          ],
                         ),
-                        for (String exercicio in exercicioRep) 
-                          Text(
-                            exercicio,
-                            style: const TextStyle(fontSize: 14),
-                          ),
+                        if(melhorSeries != null)
+                          Column(
+                            children: [
+                              const Padding(
+                                padding: EdgeInsets.only(bottom: 10.0),
+                                child: Text(
+                                  "Melhor Série",
+                                  style: TextStyle(
+                                    color: Color.fromRGBO(53, 53, 53, 100),
+                                    fontSize: 18
+                                  ),
+                                ),
+                              ),
+                              for (String melhorSerie in melhorSeries!) 
+                                Text(
+                                  melhorSerie,
+                                  style: const TextStyle(fontSize: 14),
+                                )
+                            ],
+                          )  
                       ],
                       ),
                   )

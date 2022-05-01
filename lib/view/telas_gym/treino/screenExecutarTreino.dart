@@ -17,7 +17,7 @@ class _ScreenExecutarTreinoState extends State<ScreenExecutarTreino>{
   @override 
   Widget build(BuildContext context){
     return Scaffold(
-      appBar: MyAppBar(context),
+      appBar: MyAppBar(context, title: "Treino"),
       drawer: MyDrawer(),
       body: SingleChildScrollView(
         child: Column(

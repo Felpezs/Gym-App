@@ -10,7 +10,7 @@ class ScreenListaExercicios extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(context),
+      appBar: MyAppBar(context, title: "Exercícios"),
       drawer: const MyDrawer(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

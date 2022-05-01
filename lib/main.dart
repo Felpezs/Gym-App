@@ -8,7 +8,7 @@ import 'view/telas_gym/treino/screenTreinos.dart';
 import 'view/telas_gym/treino/screenExerciciosTreino.dart';
 import 'view/telas_gym/treino/screenExecutarTreino.dart';
 import 'view/telas_gym/historico/screenHistorico.dart';
-
+import 'view/telas_gym/historico/screenHistoricoTreino.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/treinos',
+      initialRoute: '/treinos/historico',
       routes: {
         "/":(context)=> const ScreenLogin(),
         "/cadastro":(context)=> const ScreenCadastro(),
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         "/treinos/exercicios_treino/executar_treino":(context)=> const ScreenExecutarTreino(),
         //"/treinos/exercicios_treino/adicionar_exercicio":(context)=> const ScreenAdicionarExercicio(),
         "/treinos/historico":(context) => const ScreenHistorico(),
-        //"/treinos/historico/historico_treino":(context) => const ScreenHistoricoTreino(),
+        "/treinos/historico/historico_treino":(context) => const ScreenHistoricoTreino(),
         //"/treinos/perfil":(context) => const ScreenPerfil(),
         //"/treinos/sobre":(context) => const ScreenSobre()
       }

@@ -17,7 +17,10 @@ class MyDrawer extends StatelessWidget{
               colors: <Color>[Color(0xff6c92f4), Color(0xff1a73e9)],
             ),
           ),
-          child: Text('Drawer Header'),
+          child: Text(
+            'Gym App', 
+            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white)
+          ),
         ),
         ListTile(
           leading: const Icon(Icons.ice_skating),

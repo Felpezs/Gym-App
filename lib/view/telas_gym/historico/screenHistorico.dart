@@ -9,7 +9,7 @@ class ScreenHistorico extends StatelessWidget{
   @override 
   Widget build(BuildContext context){
     return Scaffold(
-      appBar: MyAppBar(context),
+      appBar: MyAppBar(context, title: "Historico"),
       drawer: MyDrawer(),
       body: SingleChildScrollView(
         child: Column(
@@ -27,18 +27,40 @@ class ScreenHistorico extends StatelessWidget{
                     ),
                   ),
                 ),
-              CardWidget(nomeTreino: "PERNAS", route: "/treinos/historico/historico_treino", exercicioRep: const [
+              CardWidget(
+                melhorSeries: const [
+                  "200 kg x 10",
+                  "60 kg x 10",
+                  "55 kg x 8"
+                ],
+                nomeTreino: "PERNAS", 
+                route: "/treinos/historico/historico_treino", 
+                exercicioRep: const [
                     "3 x Leg Press",
                     "3 x Cadeira Extensora",
                     "3 x Cadeira"
-              ]),
-              CardWidget(nomeTreino: "COSTAS", route: "/treinos/historico/historico_treino", exercicioRep: const [
+                ]),
+              CardWidget(
+                melhorSeries: const [
+                  "200 kg x 10",
+                  "60 kg x 10",
+                  "55 kg x 8"
+                ],
+                nomeTreino: "COSTAS", 
+                route: "/treinos/historico/historico_treino", 
+                exercicioRep: const [
                     "3 x Remada Curvada",
                     "3 x Puxada Triângulo",
                     "3 x Voador Dorsal"
               ]),
-              CardWidget(nomeTreino: "PEITO", route: "/treinos/historico/historico_treino", exercicioRep: const [
-                    "3 x Supino Reto",
+              CardWidget(
+                melhorSeries: const [
+                  "200 kg x 10",
+                ],
+                nomeTreino: "PEITO", 
+                route: "/treinos/historico/historico_treino", 
+                exercicioRep: const [
+                    "4 x Supino Reto",
               ]),
           ],
         ),
