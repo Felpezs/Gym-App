@@ -57,8 +57,12 @@ class _ScreenTreinosState extends State<ScreenTreinos>{
               setState(() {
                 newCards.add(CardWidget(nomeTreino: "Novo Treino", route: "/treinos/exercicios_treino", exercicioRep: []));
               });
-            }
-          )
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                backgroundColor: Colors.green,
+                duration: Duration(seconds: 2),
+                content: Text("Treino Adicionado"),
+                ));
+            })
       ])
     );
   }
