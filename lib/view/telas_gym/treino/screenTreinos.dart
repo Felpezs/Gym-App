@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../widgets/appBar.dart';
-import '../../widgets/drawer.dart';
-import '../../widgets/cardTreino.dart';
+import 'package:prog_mobile/widgets/floatingButton.dart';
+import '../../../widgets/appBar.dart';
+import '../../../widgets/drawer.dart';
+import '../../../widgets/cardTreino.dart';
 
 class ScreenTreinos extends StatefulWidget{
   const ScreenTreinos({Key? key}) : super(key: key);
@@ -34,38 +35,30 @@ class _ScreenTreinosState extends State<ScreenTreinos>{
                   ),
                 ),
               ),
-              CardWidget(nomeTreino: "PERNAS", exercicioRep: const [
+              CardWidget(nomeTreino: "PERNAS", route: "/treinos/exercicios_treino" ,exercicioRep: const [
                     "3 x Leg Press",
                     "3 x Cadeira Extensora",
                     "3 x Cadeira"
               ]),
-              CardWidget(nomeTreino: "COSTAS", exercicioRep: const [
+              CardWidget(nomeTreino: "COSTAS", route: "/treinos/exercicios_treino",  exercicioRep: const [
                     "3 x Remada Curvada",
                     "3 x Puxada Triângulo",
                     "3 x Voador Dorsal"
               ]),
-              CardWidget(nomeTreino: "PEITO", exercicioRep: const [
+              CardWidget(nomeTreino: "PEITO", route: "/treinos/exercicios_treino",  exercicioRep: const [
                     "3 x Supino Reto",
               ]),
               for (Widget newWidget in newCards)
                 newWidget,
             ]
           ),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Padding(
-              padding: EdgeInsets.only(right: 30, bottom: 30),
-              child: FloatingActionButton(
-                backgroundColor: Colors.blue,
-                child: const Icon(Icons.add),
-                onPressed: (){
-                  setState(() {
-                    newCards.add(CardWidget(nomeTreino: "Novo Treino", exercicioRep: []));
-                  });
-                },
-              ),
-            ),
-          ),
+          FloatingButton(
+            onpressed: () { 
+              setState(() {
+                newCards.add(CardWidget(nomeTreino: "Novo Treino", route: "/treinos/exercicios_treino", exercicioRep: []));
+              });
+            }
+          )
       ])
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:prog_mobile/widgets/appBar.dart';
 import 'package:prog_mobile/widgets/drawer.dart';
-import '../tela_exercicios/screenAdicionarExercicio.dart';
+import 'screenCriarExercicio.dart';
 import '../../controller/listaExercicios.dart';
 
 class ScreenListaExercicios extends StatelessWidget {

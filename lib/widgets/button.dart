@@ -42,7 +42,6 @@ class ButtonWidget extends StatelessWidget {
               minimumSize: MaterialStateProperty.all(Size(width, 50)),
               backgroundColor:
                   MaterialStateProperty.all(Colors.transparent),
-              // elevation: MaterialStateProperty.all(3),
               shadowColor:
                   MaterialStateProperty.all(Colors.transparent),
                   ),

@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class CardWidget extends StatelessWidget{
   final String nomeTreino;
   final List<String> exercicioRep;
+  final String route;
   
   CardWidget({
     required this.nomeTreino,
     required this.exercicioRep,
+    required this.route,
   });
 
   @override 
@@ -16,7 +18,7 @@ class CardWidget extends StatelessWidget{
       child: InkWell(
                 borderRadius: const BorderRadius.all(Radius.circular(10)),
                 onTap: () {
-                  Navigator.pushNamed(context, "/treinos/exercicios_treino");
+                  Navigator.pushNamed(context, route);
                 },
                 child: Container(
                   width: 350,

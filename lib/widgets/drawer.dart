@@ -30,7 +30,7 @@ class MyDrawer extends StatelessWidget{
           leading: const Icon(Icons.ice_skating),
           title: const Text('Exercicios Registrados'),
           onTap: () {
-            Navigator.pop(context);
+            Navigator.popUntil(context, ModalRoute.withName('/treinos'));
             Navigator.pushNamed(context, "/treinos/exercicios_registrados");
           },
         ),
@@ -38,7 +38,7 @@ class MyDrawer extends StatelessWidget{
           leading: const Icon(Icons.ice_skating),
           title: const Text('Historico'),
           onTap: () {
-            Navigator.pop(context);
+            Navigator.popUntil(context, ModalRoute.withName('/treinos'));
             Navigator.pushNamed(context, "/treinos/historico");
           },
         ),
@@ -46,7 +46,7 @@ class MyDrawer extends StatelessWidget{
           leading: const Icon(Icons.ice_skating),
           title: const Text('Editar Perfil'),
           onTap: () {
-            Navigator.pop(context);
+            Navigator.popUntil(context, ModalRoute.withName('/treinos'));
             Navigator.pushNamed(context, "/treinos/perfil");
           },
         ),
@@ -54,7 +54,7 @@ class MyDrawer extends StatelessWidget{
           leading: const Icon(Icons.ice_skating),
           title: const Text('Sobre'),
           onTap: () {
-            Navigator.pop(context);
+            Navigator.popUntil(context, ModalRoute.withName('/treinos'));
             Navigator.pushNamed(context, "/treinos/sobre");
           },
         ),
