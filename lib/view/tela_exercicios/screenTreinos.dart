@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
-import '../../widgets/appBarWidget.dart';
-import '../../widgets/drawerWidget.dart';
-import '../../widgets/cardTreinoWidget.dart';
+import '../../widgets/appBar.dart';
+import '../../widgets/drawer.dart';
+import '../../widgets/cardTreino.dart';
 
-class ScreenTreinos extends StatelessWidget{
+class ScreenTreinos extends StatefulWidget{
   const ScreenTreinos({Key? key}) : super(key: key);
+  
+@override
+  State<ScreenTreinos> createState() => _ScreenTreinosState();
+}
 
+class _ScreenTreinosState extends State<ScreenTreinos>{
+  List<Widget> newCards = [];
   @override 
   Widget build(BuildContext context){
     return Scaffold(
@@ -40,7 +46,9 @@ class ScreenTreinos extends StatelessWidget{
               ]),
               CardWidget(nomeTreino: "PEITO", exercicioRep: const [
                     "3 x Supino Reto",
-              ])
+              ]),
+              for (Widget newWidget in newCards)
+                newWidget,
             ]
           ),
           Align(
@@ -50,13 +58,17 @@ class ScreenTreinos extends StatelessWidget{
               child: FloatingActionButton(
                 backgroundColor: Colors.blue,
                 child: const Icon(Icons.add),
-                onPressed: (() {  
-                }),
-                     ),
+                onPressed: (){
+                  setState(() {
+                    newCards.add(CardWidget(nomeTreino: "Novo Treino", exercicioRep: []));
+                  });
+                },
+              ),
             ),
           ),
       ])
     );
   }
+  
 }
 

@@ -7,7 +7,7 @@ import 'view/telas_iniciais/screenLogin.dart';
 import 'view/tela_exercicios/screenTreinos.dart';
 import 'view/tela_exercicios/screenExerciciosTreino.dart';
 import 'controller/inputData.dart';
-import 'widgets/buttonWidget.dart';
+import 'widgets/button.dart';
 void main() {
   runApp(const MyApp());
 }

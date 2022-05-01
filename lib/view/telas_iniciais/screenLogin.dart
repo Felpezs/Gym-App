@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../widgets/buttonWidget.dart';
+import '../../widgets/button.dart';
 import '../../controller/inputData.dart';
 
 class ScreenLogin extends StatelessWidget{

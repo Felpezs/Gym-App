@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:prog_mobile/widgets/appBarWidget.dart';
-import 'package:prog_mobile/widgets/drawerWidget.dart';
+import 'package:prog_mobile/widgets/appBar.dart';
+import 'package:prog_mobile/widgets/drawer.dart';
 import '../tela_exercicios/screenAdicionarExercicio.dart';
 import '../../controller/listaExercicios.dart';
 

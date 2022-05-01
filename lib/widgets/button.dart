@@ -30,7 +30,6 @@ class ButtonWidget extends StatelessWidget {
               Color.fromRGBO(108, 146, 244, 100),
             ],
           ),
-          color: Colors.deepPurple.shade300,
           borderRadius: BorderRadius.circular(5),
         ),
         child: ElevatedButton(
