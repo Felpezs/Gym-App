@@ -32,8 +32,7 @@ class ScreenLogin extends StatelessWidget{
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ButtonWidget(buttonText: 'CADASTRAR', width: 150, onpressed: () {
-                      Navigator.pushNamed(
-                        context, "/cadastro");
+                      Navigator.pushNamed(context, "/cadastro");
                     }),
                     ButtonWidget(buttonText: 'ENTRAR', width: 150, onpressed: () {
                       Navigator.pushReplacementNamed(context, "/userInfo");

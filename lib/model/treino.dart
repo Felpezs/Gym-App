@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'exercicio.dart';
 
 class Treino{

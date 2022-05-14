@@ -28,8 +28,8 @@ class MyApp extends StatelessWidget {
         ),
         initialRoute: '/',
         routes: {
-          "/": (context) => const ScreenLogin(),
-          "/cadastro": (context) => const ScreenCadastro(),
+          "/": (_) => const ScreenLogin(),
+          "/cadastro": (_) => const ScreenCadastro(),
           "/userInfo": (context) => const ScreenUserInfo(),
           "/treinos": (context) => const ScreenTreinos(),
           "/treinos/exercicios_registrados": (context) =>
