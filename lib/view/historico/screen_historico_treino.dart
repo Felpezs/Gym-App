@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:prog_mobile/widgets/appBar.dart';
 import 'package:prog_mobile/widgets/drawer.dart';
-import '../../../controller/listaExercicios.dart';
+import '../../../src/listaExercicios.dart';
 
 class ScreenHistoricoTreino extends StatefulWidget{
   const ScreenHistoricoTreino({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class _ScreenHistoricoTreino extends State<ScreenHistoricoTreino>{
   Widget build(BuildContext context){
     return Scaffold(
       appBar: MyAppBar(context, title: "Historico"),
-      drawer: MyDrawer(),
+      drawer: const MyDrawer(),
       body: Column(
         children: [
           const Align(
@@ -36,7 +36,7 @@ class _ScreenHistoricoTreino extends State<ScreenHistoricoTreino>{
                 children: [
                   ListTile(
                     leading: iconeExercicio(ExercicioIsolado("Leg Press", "Perna")),
-                    title: Text("LegPress"),
+                    title: const Text("LegPress"),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -66,7 +66,7 @@ class _ScreenHistoricoTreino extends State<ScreenHistoricoTreino>{
                   const Divider(color: Colors.blue, thickness: 2),
                   ListTile(
                     leading: iconeExercicio(ExercicioIsolado("Cadeira Extensora", "Perna")),
-                    title: Text("Cadeira Extensora"),
+                    title: const Text("Cadeira Extensora"),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,

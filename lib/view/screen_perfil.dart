@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../controller/inputData.dart';
-import '../../widgets/button.dart';
+import '../widgets/inputs/userData.dart';
+import '../widgets/buttons/button.dart';
 
 class ScreenPerfil extends StatefulWidget {
   const ScreenPerfil({Key? key}) : super(key: key);
@@ -23,10 +23,10 @@ class _ScreenPerfilState extends State<ScreenPerfil> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
+            SizedBox(
               width: 500,
               child: Column(
-                children: [
+                children: const [
                   SizedBox(
                     height: 60,
                   ),
@@ -46,23 +46,18 @@ class _ScreenPerfilState extends State<ScreenPerfil> {
                 ],
               ),
             ),
-            Container(
-              child: Align(
+            Align(
                 child: SingleChildScrollView(
-                  child: Column(children: [
-                    InputData().loginInput(
-                        "Seu nome de Usuário", "Nome de Usuário", false),
-                    InputData().loginInput("Senha", "Senha", true),
-                    InputData()
-                        .loginInput("Confirmar Senha", "Confirmar Senha", true),
+                  child: Column(
+                    children: const [
+                      MyTextFormField(hintText: "seu nome de usuário", labelText: "Nome de Usuário", obscureText: false, icon: Icons.person),
+                      MyTextFormField(hintText: "sua senha", labelText: "Senha", obscureText: true, icon: Icons.lock),
+                      MyTextFormField(hintText: "sua senha", labelText: "Confirmar Senha", obscureText: true, icon: Icons.lock),
                   ]),
                 ),
-              ),
             ),
-            SizedBox(
-              height: 30,
-            ),
-            Text(
+            const SizedBox(height: 30),
+            const Text(
               "Altura",
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
@@ -78,7 +73,7 @@ class _ScreenPerfilState extends State<ScreenPerfil> {
                 });
               },
             ),
-            Text(
+            const Text(
               "Peso",
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
@@ -94,16 +89,16 @@ class _ScreenPerfilState extends State<ScreenPerfil> {
                 });
               },
             ),
-            Spacer(),
-            Container(
-              padding: EdgeInsets.all(0),
+            const Spacer(),
+            Padding(
+              padding: const EdgeInsets.all(0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
+                  SizedBox(
                     width: 180,
                     child: ListTile(
-                      title: Text("Masculino"),
+                      title: const Text("Masculino"),
                       leading: Radio(
                           value: "Masculino",
                           groupValue: genero,
@@ -114,10 +109,10 @@ class _ScreenPerfilState extends State<ScreenPerfil> {
                           }),
                     ),
                   ),
-                  Container(
+                  SizedBox(
                     width: 180,
                     child: ListTile(
-                      title: Text("Feminino"),
+                      title: const Text("Feminino"),
                       leading: Radio(
                           value: "Feminino",
                           groupValue: genero,

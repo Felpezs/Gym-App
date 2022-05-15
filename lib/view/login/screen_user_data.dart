@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../widgets/button.dart';
+import '../../widgets/buttons/button.dart';
 
 class ScreenUserInfo extends StatefulWidget {
   const ScreenUserInfo({Key? key}) : super(key: key);

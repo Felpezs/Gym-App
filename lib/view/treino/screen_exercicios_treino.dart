@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:prog_mobile/controller/listaExercicios.dart';
+import 'package:prog_mobile/src/listaExercicios.dart';
 import 'package:prog_mobile/widgets/appBar.dart';
-import 'package:prog_mobile/widgets/button.dart';
-import 'package:prog_mobile/widgets/buttonDelete.dart';
+import 'package:prog_mobile/widgets/buttons/button.dart';
+import 'package:prog_mobile/widgets/buttons/buttonDelete.dart';
 import 'package:prog_mobile/widgets/drawer.dart';
-import 'package:prog_mobile/widgets/floatingButton.dart';
+import 'package:prog_mobile/widgets/buttons/floatingButton.dart';
 
 class ScreenExerciciosTreino extends StatefulWidget{
   const ScreenExerciciosTreino({Key? key}) : super(key: key);

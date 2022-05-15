@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:prog_mobile/widgets/appBar.dart';
 import 'package:prog_mobile/widgets/drawer.dart';
-import 'screenCriarExercicio.dart';
-import '../../controller/listaExercicios.dart';
+import 'screen_criar_exercicio.dart';
+import '../../../src/listaExercicios.dart';
 
 class ScreenListaExercicios extends StatelessWidget {
   const ScreenListaExercicios({Key? key}) : super(key: key);

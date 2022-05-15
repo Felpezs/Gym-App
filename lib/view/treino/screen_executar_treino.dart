@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:prog_mobile/widgets/appBar.dart';
 import 'package:prog_mobile/widgets/drawer.dart';
-import 'package:prog_mobile/controller/listaExercicios.dart';
-import '../../../widgets/button.dart';
+import 'package:prog_mobile/src/listaExercicios.dart';
+import '../../widgets/buttons/button.dart';
 
 class ScreenExecutarTreino extends StatefulWidget{
   const ScreenExecutarTreino({Key? key}) : super(key: key);

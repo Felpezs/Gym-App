@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../widgets/button.dart';
-import '../../controller/inputData.dart';
+import '../../widgets/buttons/button.dart';
+import '../../widgets/inputs/userData.dart';
 
 class ScreenLogin extends StatelessWidget{
   const ScreenLogin({Key? key}) : super(key: key);
@@ -17,15 +17,15 @@ class ScreenLogin extends StatelessWidget{
                 height: 155,
                 width: 155,
               ),
-              const Text(
-                "Gym App",
-                style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold
-                )
+              const Padding(
+                padding: EdgeInsets.only(bottom: 20),
+                child: Text(
+                  "Gym App",
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)
+                ),
               ),
-              InputData().loginInput("Seu nome de Usuário", "Nome de Usuário", false),
-              InputData().loginInput("Senha", "Senha", true),
+              const MyTextFormField(hintText: "seu nome de usuário", labelText: "Nome de Usuário", obscureText: false, icon: Icons.person),
+              const MyTextFormField(hintText: "sua senha", labelText: "Senha", obscureText: true, icon: Icons.lock),
               Padding(
                 padding: const EdgeInsets.only(top: 30),
                 child: Row(

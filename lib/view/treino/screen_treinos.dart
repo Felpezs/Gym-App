@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:prog_mobile/widgets/floatingButton.dart';
+import 'package:prog_mobile/widgets/buttons/floatingButton.dart';
 import '../../../widgets/appBar.dart';
 import '../../../widgets/drawer.dart';
 import '../../../widgets/cardTreino.dart';

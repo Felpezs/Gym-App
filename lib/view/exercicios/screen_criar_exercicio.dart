@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:prog_mobile/widgets/button.dart';
+import 'package:prog_mobile/widgets/buttons/button.dart';
 
-import '../../controller/inputData.dart';
-import '../../widgets/appBar.dart';
-import '../../widgets/drawer.dart';
+import '../../widgets/inputs/exerciseData.dart';
+import '../../../widgets/appBar.dart';
+import '../../../widgets/drawer.dart';
 
 class ScreenCriarExercicio extends StatefulWidget {
   const ScreenCriarExercicio({Key? key}) : super(key: key);
@@ -44,10 +44,7 @@ class _ScreenCriarExercicioState extends State<ScreenCriarExercicio> {
                 width: 350,
                 child: Column(
                   children: [
-                    InputData().exercicioInput(
-                        "Nome que deseja dar ao exercício",
-                        "Nome do exercício",
-                        false),
+                    exercicioInput(),
                     DropdownButton<String>(
                       isExpanded: true,
                       hint: Container(
