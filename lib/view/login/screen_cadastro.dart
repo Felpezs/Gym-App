@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prog_mobile/bloc/bloc_login/sign_bloc.dart';
 import 'package:prog_mobile/bloc/bloc_login/sign_event.dart';
-import 'package:prog_mobile/model/usuario.dart';
+import 'package:prog_mobile/bloc/bloc_login/sign_state.dart';
+import 'package:prog_mobile/src/validators.dart';
 import '../../widgets/inputs/userData.dart';
 import '../../widgets/buttons/button.dart';
 
@@ -52,6 +53,7 @@ class MyForm extends StatelessWidget{
   String? username;
   String? passwordCache;
   String? passwordCacheConfirm;
+  String? email;
   
   final _formKey = GlobalKey<FormState>();
   @override 
@@ -62,81 +64,64 @@ class MyForm extends StatelessWidget{
         children: [
           MyTextFormField(
             hintText: "seu nome de usuário", 
-            labelText: "Nome de Usuário", 
-            obscureText: false, icon: Icons.person, 
-            validator: (text){
-              if(text == null || text.isEmpty) {
-                return "Esse campo deve ser preenchido para prosseguir";
-              }
-              if(text.length < 5){
-                return "Esse campo deve ter mais de 5 caracteres (Tem: ${text.length})";
-              }
-              return null;
-            },
+            labelText: "Nome de Usuário",
+            icon: Icons.person, 
+            validator: (text) => validateUsername(text),
             onChanged: (text) => username = text
+          ),
+          MyTextFormField(
+            hintText: "seu email", 
+            labelText: "Email", 
+            icon: Icons.email, 
+            validator: (text) => validateEmail(text),
+            onChanged: (text) => email = text
           ),
           MyTextFormField(
             hintText: "sua senha", 
             labelText: "Senha", 
-            obscureText: false, 
+            obscureText: true, 
             icon: Icons.lock, 
-            validator: (text){
-              if(text == null || text.isEmpty) {
-                return "Esse campo deve ser preenchido para prosseguir";
-              }
-              if(text.length < 6){
-                return "Esse campo deve ter mais de 6 caracteres (Tem: ${text.length})";
-              }
-              if(passwordCache != passwordCacheConfirm){
-                return "As senhas não coincidem";
-              }
-              return null;
-            },
+            validator: (text) => validatePassword(passwordCache, passwordCacheConfirm),
             onChanged: (text) => passwordCache = text
           ),
           MyTextFormField(
             hintText: "sua senha", 
             labelText: "Confirmar Senha", 
-            obscureText: false, 
+            obscureText: true, 
             icon: Icons.lock, 
             onSaved: (text) => passwordCacheConfirm = text, 
-            validator: (text){
-            if(text == null || text.isEmpty){
-              return "Esse campo deve ser preenchido para prosseguir";
-            }
-            if(passwordCacheConfirm != passwordCache){
-              return "As senhas não coincidem";
-            }
-            if(text.length < 6){
-                return "Esse campo deve ter mais de 6 caracteres (Tem: ${text.length})";
-              }
-            return null;
-          },
-          onChanged: (text) => passwordCacheConfirm = text
-        ),
+            validator: (text) => validatePassword(passwordCacheConfirm, passwordCache),
+            onChanged: (text) => passwordCacheConfirm = text
+          ),
           Padding(
-              padding: const EdgeInsets.only(top: 30),
-              child: Center(
-                child: ButtonWidget(
-                      buttonText: 'CONFIRMAR CADASTRO',
-                      width: 150,
-                      onpressed: () {
-                        if(_formKey.currentState!.validate()){
-                          Usuario usuario = Usuario(username: username, password: passwordCacheConfirm);
-                          BlocProvider.of<SignBloc>(context).add(SignUpEvent(usuario: usuario));
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Cadastro Feito!'), backgroundColor: Colors.green, duration: Duration(seconds: 1),)
-                          );
-                          Navigator.pop(context);
-                        }
-                        else{
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Cadastro Inválido'), backgroundColor: Colors.red, duration: Duration(seconds: 1),)
-                          );
-                        }      
-                })
-              ),
-            )
+            padding: const EdgeInsets.only(top: 30),
+            child: Center(
+              child: ButtonWidget(
+                buttonText: 'CONFIRMAR CADASTRO',
+                width: 150,
+                onpressed: () {
+                  if(_formKey.currentState!.validate()){
+                    BlocProvider.of<SignBloc>(context).add(SignUpEvent(username: username!, email: email!, password: passwordCacheConfirm!));
+                    if(BlocProvider.of<SignBloc>(context).state is SignUpValidState){
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Cadastro Feito!'), backgroundColor: Colors.green, duration: Duration(seconds: 1),)
+                      );
+                      Navigator.pop(context);
+                    }
+                    else{
+                      ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Cadastro Inválido: O email inserido não é válido!'), backgroundColor: Colors.red, duration: Duration(seconds: 1),)
+                    );
+                    }
+                  }
+                  else{
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Cadastro Inválido!'), backgroundColor: Colors.red, duration: Duration(seconds: 1),)
+                    );
+                  }      
+              })
+           ),
+          )
         ]
       )
     );

@@ -1,9 +1,11 @@
 class Usuario{
   String _username = "";
   String _password = "";
+  String _email = "";
 
-  Usuario({required username, required password}){
+  Usuario({required username, required email,required password}){
     _username = username;
+    _email = email;
     _password = password;
   }
 

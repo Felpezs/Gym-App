@@ -4,7 +4,7 @@ class MyTextFormField extends StatelessWidget{
 
   final String hintText;
   final String labelText;
-  final bool obscureText;
+  final bool? obscureText;
   final IconData icon;
   final String? Function(String? text)? validator;
   final void Function(String? text)? onSaved;
@@ -14,8 +14,8 @@ class MyTextFormField extends StatelessWidget{
     Key? key,
     required this.hintText, 
     required this.labelText, 
-    required this.obscureText, 
-    required this.icon, 
+    required this.icon,
+    this.obscureText, 
     this.validator, 
     this.onSaved,
     this.onChanged
@@ -30,7 +30,7 @@ class MyTextFormField extends StatelessWidget{
         child: TextFormField(
           autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: validator,
-          obscureText: obscureText,
+          obscureText: obscureText == null ? false : true,
           decoration: InputDecoration(
             hintText: "Digite $hintText ...", 
             labelText: labelText,

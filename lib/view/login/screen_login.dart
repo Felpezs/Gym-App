@@ -24,7 +24,7 @@ class ScreenLogin extends StatelessWidget{
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)
                 ),
               ),
-              const MyTextFormField(hintText: "seu nome de usuário", labelText: "Nome de Usuário", obscureText: false, icon: Icons.person),
+              const MyTextFormField(hintText: "seu email", labelText: "Email", icon: Icons.email),
               const MyTextFormField(hintText: "sua senha", labelText: "Senha", obscureText: true, icon: Icons.lock),
               Padding(
                 padding: const EdgeInsets.only(top: 30),
