@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
         ),
         initialRoute: '/',
         routes: {
-          "/": (_) => const ScreenLogin(),
+          "/": (_) => ScreenLogin(),
           "/cadastro": (_) => const ScreenCadastro(),
           "/userInfo": (_) => const ScreenUserInfo(),
           "/treinos": (_) => const ScreenTreinos(),

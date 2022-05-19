@@ -1,3 +1,9 @@
+validateEmpty(String ?text){
+  if(text == null || text.isEmpty){
+    return "Esse campo deve ser preenchido para prosseguir";
+  }
+}
+
 validateUsername(String? username){
   if(username == null || username.isEmpty) {
     return "Esse campo deve ser preenchido para prosseguir";

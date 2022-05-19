@@ -35,13 +35,7 @@ class CadastroView extends StatelessWidget{
           )
         }
         else if(state is Authenticated){
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Cadastro Feito!'), 
-              backgroundColor: Colors.green, 
-              duration: Duration(seconds: 1),
-            )),
-          Navigator.pop(context)
+          Navigator.pushReplacementNamed(context, "/userInfo")
         }
         else if(state is Unauthenticated){}
         else{

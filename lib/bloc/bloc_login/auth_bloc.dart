@@ -26,7 +26,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState>{
         await _authenticationService.signInWithEmailAndPassword(event.email, event.password);
       }
       catch (e){
-        emit(AuthError(message: "O login não pôde ser realizado."));
+        emit(AuthError(message: "O login não pode ser realizado. Verifique se o email e a senha estão corretos."));
       }
     });
 
