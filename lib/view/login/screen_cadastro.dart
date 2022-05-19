@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:prog_mobile/bloc/bloc_login/sign_bloc.dart';
-import 'package:prog_mobile/bloc/bloc_login/sign_event.dart';
-import 'package:prog_mobile/bloc/bloc_login/sign_state.dart';
+import 'package:prog_mobile/bloc/bloc_login/auth_bloc.dart';
+import 'package:prog_mobile/bloc/bloc_login/auth_event.dart';
+import 'package:prog_mobile/bloc/bloc_login/auth_state.dart';
 import 'package:prog_mobile/src/validators.dart';
 import '../../widgets/inputs/userData.dart';
 import '../../widgets/buttons/button.dart';
@@ -12,7 +12,7 @@ class ScreenCadastro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => SignBloc(),
+        create: (context) => AuthBloc(),
         child: const CadastroView()
     );
   }
@@ -23,25 +23,55 @@ class CadastroView extends StatelessWidget{
   
   @override 
   Widget build(BuildContext context){
-    return Scaffold(
-      body: Align(
-        child: SingleChildScrollView(
-          child: Column(children: [
-            Image.asset(
-              'assets/images/GymAppIcon.png',
-              height: 155,
-              width: 155,
-            ),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 20),
-              child: Text(
-                "Gym App",
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)
+    return BlocListener<AuthBloc, AuthState>(
+      listener: (context, state) => {
+        if(state is AuthError){
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.message), 
+              backgroundColor: Colors.red, 
+              duration: const Duration(seconds: 1)
+              )
+          )
+        }
+        else if(state is Authenticated){
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Cadastro Feito!'), 
+              backgroundColor: Colors.green, 
+              duration: Duration(seconds: 1),
+            )),
+          Navigator.pop(context)
+        }
+        else{
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Um erro ocorreu :('), 
+              backgroundColor: Colors.red, 
+              duration: Duration(seconds: 1),
+            )),
+        }
+      },
+      child: Scaffold(
+        body: Align(
+          child: SingleChildScrollView(
+            child: Column(children: [
+              Image.asset(
+                'assets/images/GymAppIcon.png',
+                height: 155,
+                width: 155,
               ),
-            ),
-            MyForm(),
-            
-          ]),
+              const Padding(
+                padding: EdgeInsets.only(bottom: 20),
+                child: Text(
+                  "Gym App",
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)
+                ),
+              ),
+              MyForm(),
+              
+            ]),
+          ),
         ),
       ),
     );
@@ -101,18 +131,7 @@ class MyForm extends StatelessWidget{
                 width: 150,
                 onpressed: () {
                   if(_formKey.currentState!.validate()){
-                    BlocProvider.of<SignBloc>(context).add(SignUpEvent(username: username!, email: email!, password: passwordCacheConfirm!));
-                    if(BlocProvider.of<SignBloc>(context).state is SignUpValidState){
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Cadastro Feito!'), backgroundColor: Colors.green, duration: Duration(seconds: 1),)
-                      );
-                      Navigator.pop(context);
-                    }
-                    else{
-                      ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Cadastro Inválido: O email inserido não é válido!'), backgroundColor: Colors.red, duration: Duration(seconds: 1),)
-                    );
-                    }
+                    BlocProvider.of<AuthBloc>(context).add(SignUpEvent(username: username!, email: email!, password: passwordCacheConfirm!));
                   }
                   else{
                     ScaffoldMessenger.of(context).showSnackBar(
