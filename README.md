@@ -1,16 +1,7 @@
-# prog_mobile
+<h1>Gym-App</h1>
 
-A new Flutter project.
+<p>O Gym-App é um projeto desenvolvido em flutter para a matéria de Dispositivos Móveis na UNICAMP-FT. Ele tem como objetivo principal servir como um auxiliar aos treinos de usuários, podendo ser utilizado para consulta de exercícios e histórico de treinos.</p>
 
-## Getting Started
+<h2>Como utilizar?</h2>
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+<p>Para ser utilizado, um ambiente flutter deve ser configurado e deverá ser criado um banco de dados na plataforma Firebase. Após, um SDK Firebase deve ser adicionado para a plataforma Android.</p>
