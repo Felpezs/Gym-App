@@ -3,9 +3,9 @@ import 'package:prog_mobile/model/user_model.dart';
 abstract class AuthState {}
 
 class Authenticated extends AuthState {
-  UserModel user;
+  UserModel userModel;
 
-  Authenticated({required this.user});
+  Authenticated({required this.userModel});
 }
 
 class Unauthenticated extends AuthState {}

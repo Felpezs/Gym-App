@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'view/screen_perfil.dart';
 import 'view/historico/screen_historico.dart';
 import 'view/historico/screen_historico_treino.dart';
@@ -11,7 +12,9 @@ import 'view/login/screen_cadastro.dart';
 import 'view/login/screen_login.dart';
 import 'view/login/screen_user_data.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 

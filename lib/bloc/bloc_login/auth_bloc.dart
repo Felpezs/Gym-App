@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:prog_mobile/model/user_model.dart';
 import 'auth_event.dart';
 import 'auth_state.dart';
 import '../../server/data_provider.dart';
@@ -35,7 +34,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState>{
       if (event.userModel == null) {
         emit(Unauthenticated());
       } else {
-        emit(Authenticated(user: event.userModel!));
+        emit(Authenticated(userModel: event.userModel!));
       }
     });
 	}

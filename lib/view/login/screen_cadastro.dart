@@ -43,6 +43,7 @@ class CadastroView extends StatelessWidget{
             )),
           Navigator.pop(context)
         }
+        else if(state is Unauthenticated){}
         else{
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
@@ -131,7 +132,7 @@ class MyForm extends StatelessWidget{
                 width: 150,
                 onpressed: () {
                   if(_formKey.currentState!.validate()){
-                    BlocProvider.of<AuthBloc>(context).add(SignUpEvent(username: username!, email: email!, password: passwordCacheConfirm!));
+                    BlocProvider.of<AuthBloc>(context).add(SignUpEvent(email: email!, password: passwordCacheConfirm!));
                   }
                   else{
                     ScaffoldMessenger.of(context).showSnackBar(
