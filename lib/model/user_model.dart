@@ -1,17 +1,21 @@
 class UserModel{
-  String? _uid;
-  String? _username = "";
-  String? _password = "";
-  String? _email = "";
+  String? _username;
+  int? _sexo;
+  int? _altura;
+  int? _peso;
 
-  UserModel({required uid, username, email, password}){
-    _uid = uid;
-    _username = username;
-    _email = email;
-    _password = password;
+  UserModel();
+
+  UserModel.withData({username = "", sexo = "", altura = "", peso = ""});
+
+  UserModel.fromMap(map){
+    _username = map['username'];
+    _sexo = map['sexo'];
+    _altura = map['altura'];
+    _peso = map['peso'];
   }
 
-  get uid{
-    return _uid;
+  String? get username{
+    return _username;
   }
 }

@@ -16,6 +16,6 @@ class SignInEvent extends AuthEvent {
 }
 
 class AuthServerEvent extends AuthEvent {
-  final UserModel? userModel;
-  AuthServerEvent(this.userModel);
+  final String? uid;
+  AuthServerEvent(this.uid);
 }

@@ -1,29 +1,34 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'firestoreServer.dart';
 import '../model/user_model.dart';
 
 class FirebaseAuthenticationService{
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
-  Stream<UserModel?> get user {
+  Stream<String?> get user {
     return _firebaseAuth.authStateChanges().map(
-      (event) => _userFromFirebaseUser(event),
+      (event) => _uidFromFirebaseUser(event),
     );
   }
 
-  UserModel? _userFromFirebaseUser(User? user) {
-    return user != null ? UserModel(uid: user.uid) : null;
+  String? _uidFromFirebaseUser(User? user) {
+    return user != null ? user.uid : null;
   }
 
-  Future<UserModel?> createUserWithEmailAndPassword(String email, String password) async {
+  Future<String?> createUserWithEmailAndPassword(String email, String password) async {
     UserCredential userCredential = await _firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);
     User? user = userCredential.user;
-    return _userFromFirebaseUser(user);
+    return _uidFromFirebaseUser(user);
   }
 
-  Future<UserModel?> signInWithEmailAndPassword(String email, String password) async{
+  Future<String?> signInWithEmailAndPassword(String email, String password) async{
     UserCredential userCredential = await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
     User? user = userCredential.user;
-    return _userFromFirebaseUser(user);
+    return _uidFromFirebaseUser(user);
+  }
+
+  Future<void> signOut() async {
+    return await _firebaseAuth.signOut();
   }
 
 }
