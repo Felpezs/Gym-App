@@ -7,18 +7,24 @@ class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState>{
 
   final FirestoreServer _databaseService = FirestoreServer.helper;
 
-  UserInfoBloc() : super(PersonalInfoState()){
-    on<FirstEntry>((event, emit){
+  UserInfoBloc() : super(NotInserted()){
+    on<InsertInfo>((event, emit) async{
       try{
-        
+        await _databaseService.insertUserInfo(username: event.username, genero: event.genero, altura: event.altura, peso: event.peso);
+        emit(Inserted());
       }
       catch(e){
-        emit(UserInfoError(message: 'Um erro ocorreu: {$e}'));
+        emit(InfoError(message: 'Um erro ocorreu nas informacoes do usuario: {$e}'));
       }
     });
-
-    on<AddPersonalInfoEvent>((event, emit){
-
-    });
+    /*
+    on<GetInfo>(((event, emit) async{
+      try{
+        UserModel user = await _databaseService.getUser();
+      }
+      catch(e){
+        emit(InfoError(message: 'Um erro ocorreu nas informacoes do usuario: {$e}'));
+      }
+    }))*/
   }
 }

@@ -15,6 +15,8 @@ class SignInEvent extends AuthEvent {
   SignInEvent({required this.email, required this.password});
 }
 
+class SignOutEvent extends AuthEvent {}
+
 class AuthServerEvent extends AuthEvent {
   final String? uid;
   AuthServerEvent(this.uid);

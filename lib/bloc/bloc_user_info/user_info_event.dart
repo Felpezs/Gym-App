@@ -1,10 +1,10 @@
 abstract class UserInfoEvent {}
 
-class AddPersonalInfoEvent extends UserInfoEvent{
+class InsertInfo extends UserInfoEvent{
+  final String username;
+  final String genero;
+  final double altura;
+  final double peso;
 
-}
-
-class FirstEntry extends UserInfoEvent{
-  final String uid;
-  FirstEntry({required this.uid});
+  InsertInfo({required this.username, required this.genero, required this.altura, required this.peso});
 }

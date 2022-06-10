@@ -32,6 +32,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState>{
       }
     });
 
+    on<SignOutEvent>(((event, emit) async{
+      try{
+        await _authenticationService.signOut();
+      }
+      catch (e){
+        AuthError(message: "O sign out nao pode ser realizado: ${e.toString()}");
+      }
+    }));
+
     on<AuthServerEvent>((event, emit) async{
       if (event.uid == null) {
         emit(Unauthenticated());

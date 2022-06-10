@@ -9,15 +9,22 @@ class FirestoreServer{
 
   String? uid;
 
-  final CollectionReference userCollection = FirebaseFirestore.instance.collection("users");
+  final CollectionReference userCollection = FirebaseFirestore.instance.collection('users');
 
   Future<UserModel> getUser() async{
-    if(!(await userCollection.doc(uid).get()).exists){
-      return UserModel();
-    }
-    DocumentSnapshot userInfo = await userCollection.doc(uid).collection('my_info').doc('personal_info').get();
-    UserModel userModel = UserModel.fromMap(userInfo.data());
-    return userModel;
+    QuerySnapshot userInfo = await userCollection.doc(uid).collection('my_info').get();
+    //Iterar pelos documentos para construir o obj
+    //UserModel userModel = UserModel.fromMap(userInfo.data());
+    return UserModel();
+  }
+
+  Future<void> insertUserInfo({required String username, required String genero, required double altura, required double peso}) async{
+    userCollection.doc(uid).collection('my_info').add({
+        "username": username,
+        "genero": genero,
+        "altura": altura,
+        "peso": peso,
+      });
   }
 }
 

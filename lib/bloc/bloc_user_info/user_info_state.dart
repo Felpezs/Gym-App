@@ -1,10 +1,8 @@
 abstract class UserInfoState {}
 
-class PersonalInfoState extends UserInfoState{
-
-}
-
-class UserInfoError extends UserInfoState {
+class Inserted extends UserInfoState{}
+class NotInserted extends UserInfoState{}
+class InfoError extends UserInfoState {
   String message = "";
-  UserInfoError({required this.message});
+  InfoError({required this.message});
 }

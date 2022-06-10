@@ -11,7 +11,7 @@ import 'view/treino/screen_exercicios_treino.dart';
 import 'view/treino/screen_treinos.dart';
 import 'view/login/screen_cadastro.dart';
 import 'view/login/screen_login.dart';
-import 'view/login/screen_user_data.dart';
+import 'view/login/screen_user_info.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
