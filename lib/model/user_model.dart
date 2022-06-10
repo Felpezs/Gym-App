@@ -1,16 +1,16 @@
 class UserModel{
   String? _username;
-  String? _sexo;
+  String? _genero;
   double? _altura;
   double? _peso;
 
   UserModel();
 
-  UserModel.withData({username = "", sexo = "", altura = 0, peso = 0});
+  UserModel.withData({username = "", genero = "", altura = 0, peso = 0});
 
   UserModel.fromMap(map){
-    _username = map['username'];
-    _sexo = map['sexo'];
+    _username = map["username"];
+    _genero = map['genero'];
     _altura = map['altura'];
     _peso = map['peso'];
   }

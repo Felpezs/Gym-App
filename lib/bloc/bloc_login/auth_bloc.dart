@@ -46,8 +46,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState>{
         emit(Unauthenticated());
       } else {
         FirestoreServer.helper.uid = event.uid;
-        UserModel userModel = await FirestoreServer.helper.getUser();
-        emit(Authenticated(userModel: userModel));
+        emit(Authenticated());
       }
     });
 	}

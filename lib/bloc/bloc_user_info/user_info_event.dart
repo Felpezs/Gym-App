@@ -8,3 +8,5 @@ class InsertInfo extends UserInfoEvent{
 
   InsertInfo({required this.username, required this.genero, required this.altura, required this.peso});
 }
+
+class GetInfo extends UserInfoEvent{}

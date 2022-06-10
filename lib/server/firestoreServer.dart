@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:prog_mobile/model/user_model.dart';
 
 class FirestoreServer{
@@ -12,14 +13,13 @@ class FirestoreServer{
   final CollectionReference userCollection = FirebaseFirestore.instance.collection('users');
 
   Future<UserModel> getUser() async{
-    QuerySnapshot userInfo = await userCollection.doc(uid).collection('my_info').get();
-    //Iterar pelos documentos para construir o obj
-    //UserModel userModel = UserModel.fromMap(userInfo.data());
-    return UserModel();
+    DocumentSnapshot userInfo = await userCollection.doc(uid).collection('my_info').doc('personal_info').get();
+    UserModel user = UserModel.fromMap(userInfo.data());
+    return user;
   }
 
   Future<void> insertUserInfo({required String username, required String genero, required double altura, required double peso}) async{
-    userCollection.doc(uid).collection('my_info').add({
+    await userCollection.doc(uid).collection('my_info').doc('personal_info').set({
         "username": username,
         "genero": genero,
         "altura": altura,

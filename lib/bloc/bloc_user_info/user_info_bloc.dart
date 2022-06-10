@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prog_mobile/server/firestoreServer.dart';
+import '../../model/user_model.dart';
 import 'user_info_event.dart';
 import 'user_info_state.dart';
 
@@ -17,14 +18,15 @@ class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState>{
         emit(InfoError(message: 'Um erro ocorreu nas informacoes do usuario: {$e}'));
       }
     });
-    /*
+    
     on<GetInfo>(((event, emit) async{
       try{
         UserModel user = await _databaseService.getUser();
+        emit(PersonalInfo(userModel: user));
       }
       catch(e){
         emit(InfoError(message: 'Um erro ocorreu nas informacoes do usuario: {$e}'));
       }
-    }))*/
+    }));
   }
 }

@@ -170,8 +170,6 @@ class _UserInfoViewState extends State<UserInfoView>{
                         altura: _currentSliderValueAltura, 
                         peso: _currentSliderValuePeso
                       ));
-                    Navigator.pop(context);
-                    Navigator.pushNamed(context, "/treinos");
                   }),
             )
           ],
