@@ -34,7 +34,7 @@ class CadastroView extends StatelessWidget{
               )
           )
         }
-        else if(state is Authenticated){
+        else if(state is Authenticated){  
           Navigator.pushReplacementNamed(context, "/userInfo")
         }
         else if(state is Unauthenticated){}
