@@ -15,7 +15,7 @@ class _ScreenHistoricoTreino extends State<ScreenHistoricoTreino>{
   Widget build(BuildContext context){
     return Scaffold(
       appBar: MyAppBar(context, title: "Historico"),
-      drawer: const MyDrawer(),
+      drawer: MyDrawer(),
       body: Column(
         children: [
           const Align(

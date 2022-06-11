@@ -1,4 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:prog_mobile/bloc/bloc_user_info/user_info_bloc.dart';
+import 'package:prog_mobile/bloc/bloc_user_info/user_info_event.dart';
+import 'package:prog_mobile/bloc/bloc_user_info/user_info_state.dart';
 import 'package:prog_mobile/widgets/buttons/floatingButton.dart';
 import '../../../widgets/appBar.dart';
 import '../../../widgets/drawer.dart';
@@ -15,9 +20,13 @@ class _ScreenTreinosState extends State<ScreenTreinos>{
   List<Widget> newCards = [];
   @override 
   Widget build(BuildContext context){
-    return Scaffold(
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => UserInfoBloc()..add(GetInfo()))
+      ], 
+      child: Scaffold(
       appBar: MyAppBar(context, title: "Treino"),
-      drawer: const MyDrawer(),
+      drawer: MyDrawer(),
       body: Stack(
         children: [
           Column(
@@ -64,8 +73,11 @@ class _ScreenTreinosState extends State<ScreenTreinos>{
                 ));
             })
       ])
+    ),
     );
   }
-  
 }
+
+
+
 

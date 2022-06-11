@@ -18,4 +18,12 @@ class UserModel{
   String? get username{
     return _username;
   }
+
+  double? get altura{
+    return _altura;
+  }
+
+  double? get peso{
+    return _peso;
+  }
 }

@@ -11,9 +11,9 @@ class ScreenPerfil extends StatefulWidget {
 }
 
 class _ScreenPerfilState extends State<ScreenPerfil> {
-  String? genero;
-  double _currentSliderValueAltura = 20;
-  double _currentSliderValuePeso = 20;
+  String? genero = 'Masculino';
+  double _currentSliderValueAltura = 173;
+  double _currentSliderValuePeso = 64;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class _ScreenPerfilState extends State<ScreenPerfil> {
                 ],
               ),
             ),
-            Align(
+            /*Align(
                 child: SingleChildScrollView(
                   child: Column(
                     children: const [
@@ -55,7 +55,7 @@ class _ScreenPerfilState extends State<ScreenPerfil> {
                       MyTextFormField(hintText: "sua senha", labelText: "Confirmar Senha", obscureText: true, icon: Icons.lock),
                   ]),
                 ),
-            ),
+            ),*/
             const SizedBox(height: 30),
             const Text(
               "Altura",
@@ -89,7 +89,7 @@ class _ScreenPerfilState extends State<ScreenPerfil> {
                 });
               },
             ),
-            const Spacer(),
+           
             Padding(
               padding: const EdgeInsets.all(0),
               child: Row(
@@ -126,6 +126,7 @@ class _ScreenPerfilState extends State<ScreenPerfil> {
                 ],
               ),
             ),
+             const Spacer(),
             Align(
               alignment: Alignment.bottomRight,
               child: ButtonWidget(
