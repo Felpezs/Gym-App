@@ -14,8 +14,8 @@ class FirestoreServer{
 
   Future<UserModel> getUser() async{
     DocumentSnapshot userInfo = await userCollection.doc(uid).collection('my_info').doc('personal_info').get();
-    UserModel user = UserModel.fromMap(userInfo.data());
-    return user;
+    UserModel userModel = UserModel.fromMap(userInfo.data());
+    return userModel;
   }
 
   Future<void> insertUserInfo({required String username, required String genero, required double altura, required double peso}) async{
@@ -25,6 +25,15 @@ class FirestoreServer{
         "altura": altura,
         "peso": peso,
       });
+  }
+
+  Future<void> updateUserInfo({required UserModel userModel}) async{
+    await userCollection.doc(uid).collection('my_info').doc('personal_info').update({
+      "username": userModel.username,
+      "genero": userModel.genero,
+      "altura": userModel.altura,
+      "peso": userModel.peso,
+    });
   }
 }
 

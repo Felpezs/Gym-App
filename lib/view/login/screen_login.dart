@@ -8,24 +8,13 @@ import '../../widgets/buttons/button.dart';
 import '../../widgets/inputs/userData.dart';
 
 class ScreenLogin extends StatelessWidget{
-  const ScreenLogin({Key? key}) : super(key: key);
+  ScreenLogin({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context){
-    return BlocProvider(
-      create: (context) => AuthBloc(),
-      child: LoginView()
-    );
-  }
-}
-
-class LoginView extends StatelessWidget{
-  LoginView({Key? key}) : super(key: key);
   final _formKey = GlobalKey<FormState>();
   String? email;
   String? password;
   
-  @override 
+  @override
   Widget build(BuildContext context){
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) => {

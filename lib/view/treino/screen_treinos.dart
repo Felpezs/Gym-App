@@ -18,62 +18,58 @@ class ScreenTreinos extends StatefulWidget{
 
 class _ScreenTreinosState extends State<ScreenTreinos>{
   List<Widget> newCards = [];
+
   @override 
   Widget build(BuildContext context){
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => UserInfoBloc()..add(GetInfo()))
-      ], 
-      child: Scaffold(
-      appBar: MyAppBar(context, title: "Treino"),
-      drawer: MyDrawer(),
-      body: Stack(
-        children: [
-          Column(
-            children: [
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Padding(
-                  padding: EdgeInsets.only(left: 30,top: 70, bottom: 30),
-                  child: Text(
-                    "TREINOS",
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold
-                    ),
+    return Scaffold(
+    appBar: MyAppBar(context, title: "Treino"),
+    drawer: MyDrawer(),
+    body: Stack(
+      children: [
+        Column(
+          children: [
+            const Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: EdgeInsets.only(left: 30,top: 70, bottom: 30),
+                child: Text(
+                  "TREINOS",
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold
                   ),
                 ),
               ),
-              CardWidget(nomeTreino: "PERNAS", route: "/treinos/exercicios_treino" ,exercicioRep: const [
-                    "3 x Leg Press",
-                    "3 x Cadeira Extensora",
-                    "3 x Cadeira"
-              ]),
-              CardWidget(nomeTreino: "COSTAS", route: "/treinos/exercicios_treino",  exercicioRep: const [
-                    "3 x Remada Curvada",
-                    "3 x Puxada Triângulo",
-                    "3 x Voador Dorsal"
-              ]),
-              CardWidget(nomeTreino: "PEITO", route: "/treinos/exercicios_treino",  exercicioRep: const [
-                    "3 x Supino Reto",
-              ]),
-              for (Widget newWidget in newCards)
-                newWidget,
-            ]
-          ),
-          FloatingButton(
-            onpressed: () { 
-              setState(() {
-                newCards.add(CardWidget(nomeTreino: "Novo Treino", route: "/treinos/exercicios_treino", exercicioRep: []));
-              });
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                backgroundColor: Colors.green,
-                duration: Duration(seconds: 2),
-                content: Text("Treino Adicionado"),
-                ));
-            })
-      ])
-    ),
+            ),
+            CardWidget(nomeTreino: "PERNAS", route: "/treinos/exercicios_treino" ,exercicioRep: const [
+                  "3 x Leg Press",
+                  "3 x Cadeira Extensora",
+                  "3 x Cadeira"
+            ]),
+            CardWidget(nomeTreino: "COSTAS", route: "/treinos/exercicios_treino",  exercicioRep: const [
+                  "3 x Remada Curvada",
+                  "3 x Puxada Triângulo",
+                  "3 x Voador Dorsal"
+            ]),
+            CardWidget(nomeTreino: "PEITO", route: "/treinos/exercicios_treino",  exercicioRep: const [
+                  "3 x Supino Reto",
+            ]),
+            for (Widget newWidget in newCards)
+              newWidget,
+          ]
+        ),
+        FloatingButton(
+          onpressed: () { 
+            setState(() {
+              newCards.add(CardWidget(nomeTreino: "Novo Treino", route: "/treinos/exercicios_treino", exercicioRep: []));
+            });
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              backgroundColor: Colors.green,
+              duration: Duration(seconds: 2),
+              content: Text("Treino Adicionado"),
+              ));
+          })
+    ])
     );
   }
 }

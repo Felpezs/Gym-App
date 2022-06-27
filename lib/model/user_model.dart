@@ -19,11 +19,31 @@ class UserModel{
     return _username;
   }
 
+  String? get genero{
+    return _genero;
+  }
+
   double? get altura{
     return _altura;
   }
 
   double? get peso{
     return _peso;
+  }
+
+  set username(username){
+    _username = username;
+  }
+
+  set genero(genero){
+    _genero = genero;
+  }
+
+  set altura(altura){
+    _altura = altura;
+  }
+
+  set peso(peso){
+    _peso = peso;
   }
 }

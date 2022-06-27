@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:prog_mobile/bloc/bloc_login/auth_bloc.dart';
+import 'package:prog_mobile/bloc/bloc_user_info/user_info_bloc.dart';
 import 'package:prog_mobile/server/auth.dart';
 import 'view/screen_perfil.dart';
 import 'view/historico/screen_historico.dart';
@@ -16,7 +19,7 @@ import 'view/login/screen_user_info.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  await FirebaseAuthenticationService().signOut();
+  //await FirebaseAuthenticationService().signOut();
   runApp(const MyApp());
 }
 
@@ -25,7 +28,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<AuthBloc>(create: (context) => AuthBloc()),
+        BlocProvider<UserInfoBloc>(create: (context) => UserInfoBloc())
+      ], 
+      child:  MaterialApp(
         title: 'Gym App',
         theme: ThemeData(
           primarySwatch: Colors.blue,
@@ -33,8 +41,8 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           "/": (_) => ScreenLogin(),
-          "/cadastro": (_) => const ScreenCadastro(),
-          "/userInfo": (_) => const ScreenUserInfo(),
+          "/cadastro": (_) => ScreenCadastro(),
+          "/cadastro/userInfo": (_) => const ScreenUserInfo(),
           "/treinos": (_) => const ScreenTreinos(),
           "/treinos/exercicios_registrados": (_) => const ScreenListaExercicios(),
           "/treinos/exercicios_registrados/criar_exercicio": (_) => const ScreenCriarExercicio(),
@@ -43,7 +51,8 @@ class MyApp extends StatelessWidget {
           "/treinos/exercicios_treino/adicionar_exercicio": (_) => const ScreenCriarExercicio(),
           "/treinos/historico": (_) => const ScreenHistorico(),
           "/treinos/historico/historico_treino": (_) => const ScreenHistoricoTreino(),
-          "/treinos/perfil": (_) => const ScreenPerfil(),
-        });
+          "/treinos/perfil": (_) => ScreenPerfil(),
+        })
+    );
   }
 }

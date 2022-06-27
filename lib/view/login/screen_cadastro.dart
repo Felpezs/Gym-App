@@ -3,27 +3,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prog_mobile/bloc/bloc_login/auth_bloc.dart';
 import 'package:prog_mobile/bloc/bloc_login/auth_event.dart';
 import 'package:prog_mobile/bloc/bloc_login/auth_state.dart';
-import 'package:prog_mobile/server/firestoreServer.dart';
 import 'package:prog_mobile/src/validators.dart';
 import '../../widgets/inputs/userData.dart';
 import '../../widgets/buttons/button.dart';
 
 class ScreenCadastro extends StatelessWidget {
-  const ScreenCadastro({Key? key}) : super(key: key);
+  MyForm _myForm = MyForm();
+
+  ScreenCadastro({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-        create: (context) => AuthBloc(),
-        child: const CadastroView()
-    );
-  }
-}
-
-class CadastroView extends StatelessWidget{
-  const CadastroView({Key? key}) : super(key: key);
-  
-  @override 
-  Widget build(BuildContext context){
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) => {
         if(state is AuthError){
@@ -36,7 +26,7 @@ class CadastroView extends StatelessWidget{
           )
         }
         else if(state is Authenticated){ 
-          Navigator.pushReplacementNamed(context, "/userInfo")
+          Navigator.pushReplacementNamed(context, "/cadastro/userInfo", arguments: _myForm.username)
         }
         else if(state is Unauthenticated){}
         else{
@@ -64,7 +54,7 @@ class CadastroView extends StatelessWidget{
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)
                 ),
               ),
-              MyForm(),
+              _myForm.build(context),
               
             ]),
           ),
@@ -88,15 +78,13 @@ class MyForm extends StatelessWidget{
       key: _formKey,
       child: Column(
         children: [
-          //CORRIGIR ENVIO DE NOME DE USUARIO
-          /*
           MyTextFormField(
             hintText: "seu nome de usuário", 
             labelText: "Nome de Usuário",
             icon: Icons.person, 
             validator: (text) => validateUsername(text),
             onChanged: (text) => username = text
-          ),*/
+          ),
           MyTextFormField(
             hintText: "seu email", 
             labelText: "Email", 

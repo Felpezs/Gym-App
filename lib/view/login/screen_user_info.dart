@@ -6,38 +6,27 @@ import 'package:prog_mobile/bloc/bloc_user_info/user_info_state.dart';
 
 import '../../widgets/buttons/button.dart';
 
-class ScreenUserInfo extends StatelessWidget{
+class ScreenUserInfo extends StatefulWidget{
   const ScreenUserInfo({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => UserInfoBloc(),
-      child: UserInfoView()
-    );
-  }
+  State<ScreenUserInfo> createState() => _ScreenUserInfoState();
 }
 
-class UserInfoView extends StatefulWidget{
-  UserInfoView({Key? key}) : super(key: key);
-
-  @override
-  State<UserInfoView> createState() => _UserInfoViewState();
-}
-
-class _UserInfoViewState extends State<UserInfoView>{
+class _ScreenUserInfoState extends State<ScreenUserInfo>{
+  
   String? genero;
   double _currentSliderValueAltura = 20;
   double _currentSliderValuePeso = 20;
 
   @override
   Widget build(BuildContext context) {
+    final username = ModalRoute.of(context)!.settings.arguments as String;
     return BlocListener<UserInfoBloc, UserInfoState>(
       listener: ((context, state) => {
-        if(state is Inserted){
+        if(state is PersonalInfo){
           Navigator.pushReplacementNamed(context, "/treinos")
         }
-        else if(state is NotInserted){}
         else if(state is InfoError){
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -165,7 +154,7 @@ class _UserInfoViewState extends State<UserInfoView>{
                   onpressed: () {
                     BlocProvider.of<UserInfoBloc>(context).add(
                       InsertInfo(
-                        username: "Geraldo", 
+                        username: username, 
                         genero: genero!, 
                         altura: _currentSliderValueAltura, 
                         peso: _currentSliderValuePeso
