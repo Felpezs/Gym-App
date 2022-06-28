@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:prog_mobile/bloc/manage_exercicioRegistrado/manage_bloc.dart';
+import 'package:prog_mobile/model/exercicioRegistrado.dart';
 import 'package:prog_mobile/widgets/buttons/button.dart';
 
-import '../../widgets/inputs/exerciseData.dart';
 import '../../../widgets/appBar.dart';
 import '../../../widgets/drawer.dart';
+import '../../bloc/manage_exercicioRegistrado/manage_event.dart';
+import '../../widgets/inputs/exerciseData.dart';
 
 class ScreenCriarExercicio extends StatefulWidget {
   const ScreenCriarExercicio({Key? key}) : super(key: key);
@@ -14,9 +18,19 @@ class ScreenCriarExercicio extends StatefulWidget {
 
 class _ScreenCriarExercicioState extends State<ScreenCriarExercicio> {
   String? dropdownValue;
+  final myController = TextEditingController();
+
+  var valorTextoLocal;
 
   @override
   Widget build(BuildContext context) {
+    void metodoCallBack(String valorTexto) {
+      valorTexto = valorTexto;
+      setState(() {
+        valorTextoLocal = valorTexto;
+      });
+    }
+
     return Scaffold(
       appBar: MyAppBar(
         context,
@@ -40,15 +54,16 @@ class _ScreenCriarExercicioState extends State<ScreenCriarExercicio> {
           ),
           Align(
             child: SingleChildScrollView(
-              child: Container(
-                width: 350,
+              child: SizedBox(
+                width: 300,
                 child: Column(
                   children: [
-                    exercicioInput(),
+                    exercicioInput(metodoCallBack: metodoCallBack),
                     DropdownButton<String>(
+                      itemHeight: 60,
                       isExpanded: true,
                       hint: Container(
-                          padding: EdgeInsets.only(bottom: 10),
+                          padding: EdgeInsets.only(bottom: 5),
                           child: Text("Músculo principal")),
                       value: dropdownValue,
                       icon: const Icon(Icons.arrow_downward),
@@ -74,11 +89,8 @@ class _ScreenCriarExercicioState extends State<ScreenCriarExercicio> {
                         );
                       }).toList(),
                     ),
-                    SizedBox(
-                      height: 30,
-                    ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 50),
+                      padding: const EdgeInsets.only(top: 5),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -86,11 +98,11 @@ class _ScreenCriarExercicioState extends State<ScreenCriarExercicio> {
                               buttonText: 'Registrar Exercício',
                               width: 50,
                               onpressed: () {
+                                registraExercicio(
+                                    context, valorTextoLocal, dropdownValue);
                                 Navigator.pop(context);
                                 Navigator.pushNamed(
-                                    //Adiciona exercicio novo
-                                    context,
-                                    "/treinos/exercicios_registrados");
+                                    context, "/treinos/exercicios_registrados");
                               }),
                         ],
                       ),
@@ -104,4 +116,12 @@ class _ScreenCriarExercicioState extends State<ScreenCriarExercicio> {
       ),
     );
   }
+}
+
+void registraExercicio(context, valorTextoLocal, dropdownValue) {
+  ExercicioRegistrado exercicioRegistrado = ExercicioRegistrado.withData(
+      nomeExercicio: valorTextoLocal, nomeCategoria: dropdownValue);
+
+  BlocProvider.of<ManageBloc>(context)
+      .add(SubmitEvent(exercicioRegistrado: exercicioRegistrado));
 }
