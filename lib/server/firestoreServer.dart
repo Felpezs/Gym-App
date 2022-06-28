@@ -127,15 +127,16 @@ class FirestoreServer {
 
   Future<void> updateExecucaoTreino(String exercicioId, String carga, String repeticao, String indexSerie) async{
     QuerySnapshot snapshot = await userCollection.doc(uid).collection('treino').doc(idTreino).collection('exercicio').doc(exercicioId).collection('serie').get();
-
     for(var doc in snapshot.docs){
       Serie serie = Serie.fromMap(doc.data());
+      print(serie.id);
+      print(indexSerie);
       if(serie.id == indexSerie){
-         await userCollection.doc(uid).collection('treino').doc(idTreino).collection('exercicio').doc(exercicioId).collection('serie').doc(serie.id).set({
+         await userCollection.doc(uid).collection('treino').doc(idTreino).collection('exercicio').doc(exercicioId).collection('serie').doc(doc.id).update({
           "serie": indexSerie,
           "carga": carga,
-          "repeticao": repeticao
-         });
+          "repeticao": repeticao,
+      });
       }
     }
   }

@@ -129,7 +129,7 @@ class _MyDataTableState extends State<MyDataTable>{
                               position: widget.exerciseIndex, 
                               carga:carga, 
                               repeticao: rep, 
-                              serie: widget.serie.toString())
+                              serie: (widget.serie-1).toString())
                               );
                           });
 
@@ -143,7 +143,7 @@ class _MyDataTableState extends State<MyDataTable>{
                               position: widget.exerciseIndex, 
                               carga: carga, 
                               repeticao: rep, 
-                              serie: widget.serie.toString())
+                              serie: (widget.serie-1).toString())
                               );
                           });
                         },
