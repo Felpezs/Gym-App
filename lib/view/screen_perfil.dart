@@ -46,11 +46,18 @@ class ScreenPerfil extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 16),
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 30),
                 ],
               ),
             ),
-            MyCustomForm(BlocProvider.of<UserInfoBloc>(context).userModel)
+            BlocBuilder<UserInfoBloc, UserInfoState>(
+              builder: ((context, state) {
+                if(state is PersonalInfo){
+                  return Expanded(child: MyCustomForm(state.userModel));
+                }
+                return Text('Carregando');
+              }),
+            )
           ],
         ),
         ),
@@ -67,21 +74,19 @@ class MyCustomForm extends StatefulWidget{
 }
 
 class _MyCustomFormState extends State<MyCustomForm>{
-  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    print(widget.user.altura);
     return Column(
       children: [
-        /*MyTextFormField(
-            initialValue: user!.username,
+        MyTextFormField(
+            initialValue: widget.user.username,
             hintText: "seu nome de usuário", 
             labelText: "Nome de Usuário",
             icon: Icons.person, 
             validator: (text) => validateUsername(text),
-            onChanged: (text) => user!.username = text
-          ),*/
+            onChanged: (text) => widget.user.username = text
+          ),
         const Text(
           "Altura",
           textAlign: TextAlign.center,
@@ -98,19 +103,21 @@ class _MyCustomFormState extends State<MyCustomForm>{
             }); 
           },
         ),
-        /*
+        
         const Text(
           "Peso",
           textAlign: TextAlign.center,
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
         Slider(
-          value: user!.peso!,
+          value: widget.user.peso!,
           max: 220,
           divisions: 200,
-          label: ( "${user!.peso} kg"),
+          label: ( "${widget.user.peso} kg"),
           onChanged: (double value) {
-              user!.peso = value;
+            setState(() {
+              widget.user.peso = value;
+            });  
           },
         ),
         Padding(
@@ -124,9 +131,11 @@ class _MyCustomFormState extends State<MyCustomForm>{
                   title: const Text("Masculino"),
                   leading: Radio(
                       value: "Masculino",
-                      groupValue: user!.genero,
+                      groupValue: widget.user.genero,
                       onChanged: (value) {
-                        user!.genero = value.toString();
+                        setState(() {
+                          widget.user.genero = value.toString();
+                        }); 
                       }),
                 ),
               ),
@@ -136,17 +145,18 @@ class _MyCustomFormState extends State<MyCustomForm>{
                   title: const Text("Feminino"),
                   leading: Radio(
                       value: "Feminino",
-                      groupValue: user!.genero,
+                      groupValue: widget.user.genero,
                       onChanged: (value) {
-                          user!.genero = value.toString();
+                        setState(() {
+                          widget.user.genero = value.toString();
+                        }); 
                       }),
                 ),
               ),
             ],
           ),
         ),
-    */
-    const SizedBox(height: 30),
+    const SizedBox(height: 40),
             const Spacer(),
             Align(
               alignment: Alignment.bottomRight,
@@ -154,10 +164,24 @@ class _MyCustomFormState extends State<MyCustomForm>{
                   buttonText: "Confirmar",
                   width: 100,
                   onpressed: () {
-                    print(_formKey.currentState);
-                    /*BlocProvider.of<UserInfoBloc>(context).add(
-                      UpdateInfo(userModel: UserModel())
-                    );*/
+                    UserModel updatedUser = UserModel.withData(
+                      username: widget.user.username, 
+                      altura: widget.user.altura, 
+                      peso: widget.user.peso, 
+                      genero: widget.user.genero
+                    );
+                    BlocProvider.of<UserInfoBloc>(context).add(
+                      UpdateInfo(userModel: updatedUser)
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text("Dados atualizados"), 
+                        backgroundColor: Colors.green, 
+                        duration: Duration(seconds: 1)
+                        )
+                    );
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, "/treinos");
                   }),
             )]);
   }
