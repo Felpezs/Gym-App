@@ -1,24 +1,13 @@
 class Serie{
-  int _carga = 0;
-  int _repeticao = 0;
+  String? id;
+  String? carga;
+  String? repeticao;
 
-  String mostrarSerie(){
-    return "Carga: $_carga Repeticoes: $_repeticao";
-  }
+  Serie();
 
-  set carga(int c){
-    carga = c;
-  }
-
-  int get carga{
-    return _carga;
-  }
-
-  set repeticao(int r){
-    _repeticao = r;
-  }
-
-  int get repeticao{
-    return _repeticao;
+  Serie.fromMap(map){
+    id = map["serie"];
+    carga = map["carga"];
+    repeticao = map["repeticao"];
   }
 }

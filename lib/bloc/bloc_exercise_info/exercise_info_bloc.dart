@@ -20,8 +20,27 @@ class ExerciseInfoBloc extends Bloc<ExerciseInfoEvent, ExerciseInfoState>{
       emit(ExercisesLoaded(exercicioCollection: _exercicioCollection));
     });
 
+    on<InsertExercicio>((event, emit) async{
+        await _databaseService.insertExercicioTreino(event.exercicio);
+    });
+
     on<UpdateExercicio>((event, emit) async{
       emit(ExercisesLoaded(exercicioCollection: _exercicioCollection));
+    });
+
+    on<DeleteExercicio>((event, emit) async{
+      String exercicioId = _exercicioCollection.idList[event.position];
+      await _databaseService.deleteExercicioTreino(exercicioId);
+    });
+
+    on<InsertExecucao>((event, emit) async{
+      String exercicioId = _exercicioCollection.idList[event.position];
+      await _databaseService.insertExecucaoTreino(exercicioId, event.carga, event.repeticao, event.serie);
+    });
+
+    on<UpdateExecucao>((event, emit) async{
+      String exercicioId = _exercicioCollection.idList[event.position];
+      await _databaseService.updateExecucaoTreino(exercicioId, event.carga, event.repeticao, event.serie);
     });
 
     add(GetExercicios());

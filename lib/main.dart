@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prog_mobile/bloc/bloc_exercise_info/exercise_info_bloc.dart';
 import 'package:prog_mobile/bloc/bloc_login/auth_bloc.dart';
 import 'package:prog_mobile/bloc/bloc_user_info/user_info_bloc.dart';
+import 'package:prog_mobile/server/auth.dart';
 import 'package:prog_mobile/view/treino/screen_selecionar_exercicio.dart';
 
 import 'bloc/bloc_gym_info/gym_info_bloc.dart';
@@ -59,7 +60,7 @@ class MyApp extends StatelessWidget {
                   const ScreenCriarExercicio(),
               "/treinos/exercicios_treino": (_) => ScreenExerciciosTreino(),
               "/treinos/exercicios_treino/executar_treino": (_) =>
-                  const ScreenExecutarTreino(),
+                  ScreenExecutarTreino(),
               "/treinos/exercicios_treino/selecionar_exercicio": (_) =>
                   const ScreenSelecionarExercicio(),
               "/treinos/exercicios_treino/adicionar_exercicio": (_) =>

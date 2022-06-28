@@ -1,10 +1,28 @@
 import 'package:flutter/material.dart';
 
 class ButtonDelete extends StatelessWidget {
+  Function? onPressed;
+  String? onPressedMessage;
+
+  ButtonDelete({this.onPressed, this.onPressedMessage});
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: (){}, //Deletar exercicio do treino 
+      onPressed: (){
+        if(onPressed != null){
+          onPressed!();
+          if(onPressedMessage != null){
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+              content: Text(onPressedMessage!), 
+              backgroundColor: Colors.red, 
+              duration: Duration(seconds: 1),
+            ));
+          }
+          
+        }
+      }, 
       child: Icon(Icons.remove, color: Colors.white),
       style: ElevatedButton.styleFrom(
         shape: CircleBorder(),

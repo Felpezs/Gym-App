@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:prog_mobile/model/exercicio.dart';
 
 Widget iconeExercicio({required Exercicio exercicio}) {
-  print(exercicio.categoria);
   return Tab(
     icon: Image.asset(
       imagemCategoria(exercicio.categoria),

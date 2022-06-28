@@ -7,6 +7,7 @@ import '../model/colecaoExercicio.dart';
 import '../model/exercicio.dart';
 import '../model/exercicioRegistrado.dart';
 import '../model/exercicios.dart';
+import '../model/serie.dart';
 
 class FirestoreServer {
   static FirestoreServer helper = FirestoreServer._createInstance();
@@ -103,6 +104,40 @@ class FirestoreServer {
         .collection('exercicio')
         .get();
     return _exercicioListFromSnapshot(snapshot);
+  }
+
+  Future<void> insertExercicioTreino(Exercicio exercicio) async{
+    await userCollection.doc(uid).collection('treino').doc(idTreino).collection('exercicio').add({
+      "categoria": exercicio.categoria,
+      "nomeExercicio": exercicio.nomeExercicio
+    });
+  }
+
+  Future<void> deleteExercicioTreino(String exercicioId) async{
+    await userCollection.doc(uid).collection('treino').doc(idTreino).collection('exercicio').doc(exercicioId).delete();
+  }
+
+  Future<void> insertExecucaoTreino(String exercicioId, String carga, String repeticao, String serie) async{
+    await userCollection.doc(uid).collection('treino').doc(idTreino).collection('exercicio').doc(exercicioId).collection('serie').doc().set({
+      "serie": serie,
+      "carga": carga,
+      "repeticao": repeticao,
+    });
+  }
+
+  Future<void> updateExecucaoTreino(String exercicioId, String carga, String repeticao, String indexSerie) async{
+    QuerySnapshot snapshot = await userCollection.doc(uid).collection('treino').doc(idTreino).collection('exercicio').doc(exercicioId).collection('serie').get();
+
+    for(var doc in snapshot.docs){
+      Serie serie = Serie.fromMap(doc.data());
+      if(serie.id == indexSerie){
+         await userCollection.doc(uid).collection('treino').doc(idTreino).collection('exercicio').doc(exercicioId).collection('serie').doc(serie.id).set({
+          "serie": indexSerie,
+          "carga": carga,
+          "repeticao": repeticao
+         });
+      }
+    }
   }
 
   Stream get streamExercicio {

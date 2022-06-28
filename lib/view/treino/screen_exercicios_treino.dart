@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prog_mobile/bloc/bloc_exercise_info/exercise_info_bloc.dart';
+import 'package:prog_mobile/bloc/bloc_exercise_info/exercise_info_event.dart';
+import 'package:prog_mobile/bloc/bloc_gym_info/gym_info_bloc.dart';
 import 'package:prog_mobile/src/listaExercicios.dart';
 import 'package:prog_mobile/widgets/appBar.dart';
 import 'package:prog_mobile/widgets/buttons/button.dart';
@@ -49,7 +51,7 @@ class ScreenExerciciosTreino extends StatelessWidget {
                 width: 250,
                 onpressed: () {
                   Navigator.pushNamed(
-                      context, "/treinos/exercicios_treino/executar_treino");
+                      context, "/treinos/exercicios_treino/executar_treino", arguments: nomeTreino);
                 }),
           ),
         ),
@@ -71,7 +73,9 @@ ListView getExercicioListView(ExercicioCollection exercicioCollection) {
               exercicio: exercicioCollection.getExercicioAtIndex(position)),
           title: Text(
               exercicioCollection.getExercicioAtIndex(position).nomeExercicio),
-          trailing: ButtonDelete(),
+          trailing: ButtonDelete(onPressed: (){
+            BlocProvider.of<ExerciseInfoBloc>(context).add(DeleteExercicio(position: position));
+          }, onPressedMessage: "Exercicio Deletado",),
         );
       });
 }
