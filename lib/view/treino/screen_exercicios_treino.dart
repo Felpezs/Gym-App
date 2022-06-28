@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prog_mobile/bloc/bloc_exercise_info/exercise_info_bloc.dart';
