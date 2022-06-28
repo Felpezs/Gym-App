@@ -1,24 +1,30 @@
 import 'serie.dart';
 
 class Exercicio{
-  final String nomeExercicio;
+  String? _nomeExercicio;
+  String? _categoria;
   List<Serie> _series = [];
 
-  Exercicio({
-    required this.nomeExercicio,
-  });
+  Exercicio();
 
+  Exercicio.withData({nomeExercicio = "", categoria = ""});
+
+  Exercicio.fromMap(map) {
+    _nomeExercicio = map["nomeExercicio"];
+    _categoria = map["categoria"];
+  }
+
+  get nomeExercicio{
+    return _nomeExercicio;
+  }
+
+  get categoria{
+    return _categoria;
+  }
+  
   void adicionarSerie(){
     Serie serie = Serie();
     _series.add(serie);
   }
 
-  String apresentarExercicio(){
-    StringBuffer resultado = StringBuffer();
-    resultado.writeln("Exercicio: $nomeExercicio");
-    for(Serie serie in _series){
-      resultado.writeln(serie.mostrarSerie());
-    }
-    return resultado.toString();
-  }
 }

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:prog_mobile/bloc/bloc_exercise_info/exercise_info_bloc.dart';
 import 'package:prog_mobile/bloc/bloc_login/auth_bloc.dart';
 import 'package:prog_mobile/bloc/bloc_user_info/user_info_bloc.dart';
 import 'package:prog_mobile/server/auth.dart';
+import 'package:prog_mobile/view/treino/screen_selecionar_exercicio.dart';
+import 'bloc/bloc_gym_info/gym_info_bloc.dart';
 import 'view/screen_perfil.dart';
 import 'view/historico/screen_historico.dart';
 import 'view/historico/screen_historico_treino.dart';
@@ -30,8 +33,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<AuthBloc>(create: (context) => AuthBloc()),
-        BlocProvider<UserInfoBloc>(create: (context) => UserInfoBloc())
+        BlocProvider<AuthBloc>(create: (_) => AuthBloc()),
+        BlocProvider<UserInfoBloc>(create: (_) => UserInfoBloc()),
+        BlocProvider<GymInfoBloc>(create: (_) => GymInfoBloc()),
+        BlocProvider<ExerciseInfoBloc>(create: (_) => ExerciseInfoBloc()),
       ], 
       child:  MaterialApp(
         title: 'Gym App',
@@ -43,11 +48,12 @@ class MyApp extends StatelessWidget {
           "/": (_) => ScreenLogin(),
           "/cadastro": (_) => ScreenCadastro(),
           "/cadastro/userInfo": (_) => const ScreenUserInfo(),
-          "/treinos": (_) => const ScreenTreinos(),
+          "/treinos": (_) => ScreenTreinos(),
           "/treinos/exercicios_registrados": (_) => const ScreenListaExercicios(),
           "/treinos/exercicios_registrados/criar_exercicio": (_) => const ScreenCriarExercicio(),
-          "/treinos/exercicios_treino": (_) => const ScreenExerciciosTreino(),
+          "/treinos/exercicios_treino": (_) => ScreenExerciciosTreino(),
           "/treinos/exercicios_treino/executar_treino": (_) => const ScreenExecutarTreino(),
+          "/treinos/exercicios_treino/selecionar_exercicio": (_) => const ScreenSelecionarExercicio(),
           "/treinos/exercicios_treino/adicionar_exercicio": (_) => const ScreenCriarExercicio(),
           "/treinos/historico": (_) => const ScreenHistorico(),
           "/treinos/historico/historico_treino": (_) => const ScreenHistoricoTreino(),

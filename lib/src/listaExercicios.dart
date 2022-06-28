@@ -1,33 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:prog_mobile/model/exercicio.dart';
 
-class ExercicioIsolado {
-  final String nomeExercicio;
-  final String categoriaExercicio;
-
-  ExercicioIsolado(this.nomeExercicio, this.categoriaExercicio);
-}
-
-Widget iconeExercicio(ExercicioIsolado exercicioIsolado) {
+Widget iconeExercicio({required Exercicio exercicio}) {
+  print(exercicio.categoria);
   return Tab(
     icon: Image.asset(
-      imagemCategoria(exercicioIsolado),
+      imagemCategoria(exercicio.categoria),
       width: 30,
       height: 30,
     ),
   );
 }
 
-//Recebe um obj ExercicioIsolado e define qual ícone de imagem será apresentado na tela
-imagemCategoria(ExercicioIsolado exercicioIsolado) {
-  if (exercicioIsolado.categoriaExercicio == "Perna") {
+imagemCategoria(String categoria) {
+  if (categoria == "Perna") {
     return "assets/images/perna.png";
-  } else if (exercicioIsolado.categoriaExercicio == "Braço") {
+  } else if (categoria == "Braço") {
     return "assets/images/braco.png";
-  } else if (exercicioIsolado.categoriaExercicio == "Peito") {
+  } else if (categoria == "Peito") {
     return "assets/images/peito.png";
-  } else if (exercicioIsolado.categoriaExercicio == "Costas") {
+  } else if (categoria == "Costas") {
     return "assets/images/costas.png";
-  } else if (exercicioIsolado.categoriaExercicio == "Ombro") {
+  } else if (categoria == "Ombro") {
     return "assets/images/ombro.png";
   } else {
     return "assets/images/ronnieColleman.png";

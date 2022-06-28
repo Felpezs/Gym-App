@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:prog_mobile/bloc/bloc_gym_info/gym_info_bloc.dart';
+import 'package:prog_mobile/bloc/bloc_gym_info/gym_info_event.dart';
 
 class CardWidget extends StatelessWidget{
   final String nomeTreino;
-  final List<String> exercicioRep;
+  final List<String>? exercicioRep;
   final String route;
+  final int? position;
   final List<String>? melhorSeries;
+  final String? props;
   
   CardWidget({
+    this.props,
     this.melhorSeries, 
+    this.position,
     required this.nomeTreino, 
-    required this.exercicioRep, 
+    this.exercicioRep, 
     required this.route});
 
   @override 
@@ -19,7 +26,10 @@ class CardWidget extends StatelessWidget{
       child: InkWell(
                 borderRadius: const BorderRadius.all(Radius.circular(10)),
                 onTap: () {
-                  Navigator.pushNamed(context, route);
+                  if(position!=null){
+                    BlocProvider.of<GymInfoBloc>(context).add(SelectedTreino(position: position!));
+                  }
+                  Navigator.pushNamed(context, route, arguments: props);
                 },
                 child: Container(
                   width: 350,
@@ -46,11 +56,12 @@ class CardWidget extends StatelessWidget{
                                 ),
                               ),
                             ),
-                            for (String exercicio in exercicioRep) 
-                            Text(
-                              exercicio,
-                              style: const TextStyle(fontSize: 14),
-                            ),
+                            /*
+                            for (String exercicio in exercicioRep!)
+                              Text(
+                                  exercicio,
+                                  style: const TextStyle(fontSize: 14),
+                                ),*/
                           ],
                         ),
                         if(melhorSeries != null)

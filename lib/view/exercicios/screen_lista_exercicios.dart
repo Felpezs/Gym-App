@@ -37,6 +37,7 @@ class ScreenListaExercicios extends StatelessWidget {
           Container(
             height: 20,
           ),
+          /*
           itemExercicio(
             ExercicioIsolado('Abdutora', 'Perna'),
           ),
@@ -54,13 +55,13 @@ class ScreenListaExercicios extends StatelessWidget {
           ),
           itemExercicio(
             ExercicioIsolado('Rosca Direta', 'ASAS'),
-          ),
+          ),*/
         ],
       ),
     );
   }
 }
-
+/*
 class itemExercicio extends StatelessWidget {
   final ExercicioIsolado _exercicioIsolado;
   itemExercicio(this._exercicioIsolado);
@@ -74,4 +75,4 @@ class itemExercicio extends StatelessWidget {
       ),
     );
   }
-}
+}*/

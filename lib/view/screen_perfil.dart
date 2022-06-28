@@ -15,9 +15,6 @@ import '../widgets/inputs/userData.dart';
 
 class ScreenPerfil extends StatelessWidget {
   ScreenPerfil({Key? key}) : super(key: key);
-
-  UserData _myUserData = UserData();
-
   @override
   Widget build(BuildContext context) {
     return BlocProvider.value(
@@ -53,21 +50,7 @@ class ScreenPerfil extends StatelessWidget {
                 ],
               ),
             ),
-            _myUserData.build(context),
-            //userDataWidget,
-            const SizedBox(height: 30),
-            const Spacer(),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: ButtonWidget(
-                  buttonText: "Confirmar",
-                  width: 100,
-                  onpressed: () {
-                    //BlocProvider.of<UserInfoBloc>(context).add(
-                    //  UpdateInfo(userModel: userDataWidget.user)
-                    //);
-                  }),
-            )
+            MyCustomForm(BlocProvider.of<UserInfoBloc>(context).userModel)
           ],
         ),
         ),
@@ -76,112 +59,107 @@ class ScreenPerfil extends StatelessWidget {
   }
 }
 
-class UserData extends StatelessWidget{
-  UserData({Key? key}) : super(key: key);
-  UserModel? user;
- @override
+class MyCustomForm extends StatefulWidget{
+  UserModel user;
+  MyCustomForm(this.user, {Key? key}) : super(key: key);
+  State<MyCustomForm> createState() => _MyCustomFormState();
+  
+}
+
+class _MyCustomFormState extends State<MyCustomForm>{
+  final _formKey = GlobalKey<FormState>();
+
+  @override
   Widget build(BuildContext context) {
-    return BlocConsumer<UserInfoBloc, UserInfoState>(
-      listener: (context, state){
-        if(state is PersonalInfo){
-          user = state.userModel;
-        }
-        else if(state is InfoError){
-         ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.message), 
-              backgroundColor: Colors.red, 
-              duration: const Duration(seconds: 1)
-              )
-         );
-        }
-        else if(state is Loading){}
-        else{
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text("Um erro ocorreu"), 
-              backgroundColor: Colors.red, 
-              duration: Duration(seconds: 1)
-              )
-          );
-        }
-      },
-      builder: (context, state){
-        if(state is PersonalInfo){
-          return Column(
+    print(widget.user.altura);
+    return Column(
+      children: [
+        /*MyTextFormField(
+            initialValue: user!.username,
+            hintText: "seu nome de usuário", 
+            labelText: "Nome de Usuário",
+            icon: Icons.person, 
+            validator: (text) => validateUsername(text),
+            onChanged: (text) => user!.username = text
+          ),*/
+        const Text(
+          "Altura",
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
+        Slider(
+          value: widget.user.altura!,
+          max: 220,
+          divisions: 200,
+          label: ("${widget.user.altura} cm"),
+          onChanged: (double value) {
+            setState(() {
+              widget.user.altura = value;
+            }); 
+          },
+        ),
+        /*
+        const Text(
+          "Peso",
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
+        Slider(
+          value: user!.peso!,
+          max: 220,
+          divisions: 200,
+          label: ( "${user!.peso} kg"),
+          onChanged: (double value) {
+              user!.peso = value;
+          },
+        ),
+        Padding(
+          padding: const EdgeInsets.all(0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              MyTextFormField(
-                  initialValue: user!.username,
-                  hintText: "seu nome de usuário", 
-                  labelText: "Nome de Usuário",
-                  icon: Icons.person, 
-                  validator: (text) => validateUsername(text),
-                  onChanged: (text) => user!.username = text
+              SizedBox(
+                width: 180,
+                child: ListTile(
+                  title: const Text("Masculino"),
+                  leading: Radio(
+                      value: "Masculino",
+                      groupValue: user!.genero,
+                      onChanged: (value) {
+                        user!.genero = value.toString();
+                      }),
                 ),
-              const Text(
-                "Altura",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
-              Slider(
-                value: user!.altura!,
-                max: 220,
-                divisions: 200,
-                label: ("${user!.altura} cm"),
-                onChanged: (double value) {
-                  user!.altura = value;
-                },
-              ),
-              const Text(
-                "Peso",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-              Slider(
-                value: user!.peso!,
-                max: 220,
-                divisions: 200,
-                label: ( "${user!.peso} kg"),
-                onChanged: (double value) {
-                    user!.peso = value;
-                },
-              ),
-              Padding(
-                padding: const EdgeInsets.all(0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: 180,
-                      child: ListTile(
-                        title: const Text("Masculino"),
-                        leading: Radio(
-                            value: "Masculino",
-                            groupValue: user!.genero,
-                            onChanged: (value) {
-                              user!.genero = value.toString();
-                            }),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 180,
-                      child: ListTile(
-                        title: const Text("Feminino"),
-                        leading: Radio(
-                            value: "Feminino",
-                            groupValue: user!.genero,
-                            onChanged: (value) {
-                                user!.genero = value.toString();
-                            }),
-                      ),
-                    ),
-                  ],
+              SizedBox(
+                width: 180,
+                child: ListTile(
+                  title: const Text("Feminino"),
+                  leading: Radio(
+                      value: "Feminino",
+                      groupValue: user!.genero,
+                      onChanged: (value) {
+                          user!.genero = value.toString();
+                      }),
                 ),
-              )
-          ]);
-        }
-        return const Text('Carregando...');
-      }
-    );
+              ),
+            ],
+          ),
+        ),
+    */
+    const SizedBox(height: 30),
+            const Spacer(),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: ButtonWidget(
+                  buttonText: "Confirmar",
+                  width: 100,
+                  onpressed: () {
+                    print(_formKey.currentState);
+                    /*BlocProvider.of<UserInfoBloc>(context).add(
+                      UpdateInfo(userModel: UserModel())
+                    );*/
+                  }),
+            )]);
   }
+  
 }

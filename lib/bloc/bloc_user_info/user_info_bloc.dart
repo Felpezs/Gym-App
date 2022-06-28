@@ -42,6 +42,6 @@ class UserInfoBloc extends Bloc<UserInfoEvent, UserInfoState>{
       }
     });
     
-    GetInfo();
+    add(GetInfo());
   }
 }

@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:prog_mobile/bloc/bloc_gym_info/gym_info_bloc.dart';
+import 'package:prog_mobile/bloc/bloc_gym_info/gym_info_state.dart';
 import 'package:prog_mobile/bloc/bloc_user_info/user_info_bloc.dart';
 import 'package:prog_mobile/bloc/bloc_user_info/user_info_event.dart';
 import 'package:prog_mobile/bloc/bloc_user_info/user_info_state.dart';
@@ -8,16 +10,10 @@ import 'package:prog_mobile/widgets/buttons/floatingButton.dart';
 import '../../../widgets/appBar.dart';
 import '../../../widgets/drawer.dart';
 import '../../../widgets/cardTreino.dart';
+import '../../bloc/bloc_gym_info/gym_info_event.dart';
+import '../../model/treinos.dart';
 
-class ScreenTreinos extends StatefulWidget{
-  const ScreenTreinos({Key? key}) : super(key: key);
-  
-@override
-  State<ScreenTreinos> createState() => _ScreenTreinosState();
-}
-
-class _ScreenTreinosState extends State<ScreenTreinos>{
-  List<Widget> newCards = [];
+class ScreenTreinos extends StatelessWidget{
 
   @override 
   Widget build(BuildContext context){
@@ -41,28 +37,22 @@ class _ScreenTreinosState extends State<ScreenTreinos>{
                 ),
               ),
             ),
-            CardWidget(nomeTreino: "PERNAS", route: "/treinos/exercicios_treino" ,exercicioRep: const [
-                  "3 x Leg Press",
-                  "3 x Cadeira Extensora",
-                  "3 x Cadeira"
-            ]),
-            CardWidget(nomeTreino: "COSTAS", route: "/treinos/exercicios_treino",  exercicioRep: const [
-                  "3 x Remada Curvada",
-                  "3 x Puxada Triângulo",
-                  "3 x Voador Dorsal"
-            ]),
-            CardWidget(nomeTreino: "PEITO", route: "/treinos/exercicios_treino",  exercicioRep: const [
-                  "3 x Supino Reto",
-            ]),
-            for (Widget newWidget in newCards)
-              newWidget,
+            SizedBox(
+              height: 600,
+              child: BlocBuilder<GymInfoBloc, GymInfoState>(
+                builder: ((context,state) {
+                  if(state is GymInfoLoaded){
+                    return getTreinoListView(state.treinoCollection);
+                  }
+                  return const Text("Carregando...");
+                }),
+              ),
+            ),
           ]
         ),
         FloatingButton(
           onpressed: () { 
-            setState(() {
-              newCards.add(CardWidget(nomeTreino: "Novo Treino", route: "/treinos/exercicios_treino", exercicioRep: []));
-            });
+            BlocProvider.of<GymInfoBloc>(context).add(InsertTreino(nomeTreino: 'Novo Treino'));
             ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
               backgroundColor: Colors.green,
               duration: Duration(seconds: 2),
@@ -74,6 +64,12 @@ class _ScreenTreinosState extends State<ScreenTreinos>{
   }
 }
 
-
-
-
+ListView getTreinoListView(TreinoCollection treinoCollection) {
+    return ListView.builder(
+        itemCount: treinoCollection.length(),
+        itemBuilder: (context, position){
+          String nomeTreino = treinoCollection.getTreinoAtIndex(position).nomeTreino;
+          return CardWidget(nomeTreino: nomeTreino, route: "/treinos/exercicios_treino", props: nomeTreino, position: position);
+        }
+    );
+  }

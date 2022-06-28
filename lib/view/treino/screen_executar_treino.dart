@@ -36,7 +36,7 @@ class _ScreenExecutarTreinoState extends State<ScreenExecutarTreino>{
                   ),
                 ),
             ListTile(
-                leading: iconeExercicio(ExercicioIsolado("Leg Press", "Perna")),
+                //leading: iconeExercicio(ExercicioIsolado("Leg Press", "Perna")),
                 title: Text("LegPress"),
             ),
             const Divider(color: Colors.blue, thickness: 2,),

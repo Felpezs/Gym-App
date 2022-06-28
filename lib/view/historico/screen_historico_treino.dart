@@ -35,7 +35,7 @@ class _ScreenHistoricoTreino extends State<ScreenHistoricoTreino>{
               child: ListView( 
                 children: [
                   ListTile(
-                    leading: iconeExercicio(ExercicioIsolado("Leg Press", "Perna")),
+                    //leading: iconeExercicio(ExercicioIsolado("Leg Press", "Perna")),
                     title: const Text("LegPress"),
                   ),
                   Row(
@@ -65,7 +65,7 @@ class _ScreenHistoricoTreino extends State<ScreenHistoricoTreino>{
                   ),
                   const Divider(color: Colors.blue, thickness: 2),
                   ListTile(
-                    leading: iconeExercicio(ExercicioIsolado("Cadeira Extensora", "Perna")),
+                    //leading: iconeExercicio(ExercicioIsolado("Cadeira Extensora", "Perna")),
                     title: const Text("Cadeira Extensora"),
                   ),
                   Row(
@@ -95,7 +95,7 @@ class _ScreenHistoricoTreino extends State<ScreenHistoricoTreino>{
                   ),
                   const Divider(color: Colors.blue, thickness: 2),
                    ListTile(
-                    leading: iconeExercicio(ExercicioIsolado("Cadeira Extensora", "Perna")),
+                    //leading: iconeExercicio(ExercicioIsolado("Cadeira Extensora", "Perna")),
                     title: Text("Cadeira Flexora"),
                   ),
                   Row(
